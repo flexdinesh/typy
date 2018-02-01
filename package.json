@@ -1,7 +1,7 @@
 {
   "name": "is-check",
   "version": "0.0.0",
-  "description": "A minimal type evaluation library",
+  "description": "A type checking library that never throws",
   "main": "./lib/index.js",
   "scripts": {
     "clean": "rimraf lib",
@@ -23,11 +23,25 @@
     "url": "git+https://github.com/flexdinesh/is-check.git"
   },
   "keywords": [
-    "boilerplate",
-    "npm",
-    "module",
-    "node",
-    "javascript"
+    "type",
+		"types",
+		"is",
+		"check",
+		"checking",
+		"validate",
+		"validation",
+		"utility",
+		"util",
+		"typeof",
+		"instanceof",
+		"object",
+		"assert",
+		"assertion",
+		"test",
+		"kind",
+		"primitive",
+		"verify",
+		"compare"
   ],
   "author": "Dineshkumar Pandiyan <flexdinesh@gmail.com>",
   "license": "MIT",
