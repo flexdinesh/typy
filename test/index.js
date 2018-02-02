@@ -127,3 +127,18 @@ describe('Type', () => {
     assert(t(func).isFunction === true, 'Function check didn\'t work :(');
   });
 });
+
+describe('Monkey Test', () => {
+  it('should not throw error for any value', () => {
+    const mockObj = { goodKey: 'hello' };
+    const monkeyInputs = [
+      1, 0, -1, '', 'hey', true, false, {}, { yo: 'yoyo' },
+      [], [1, 2], null, undefined, mockObj.goodKey, mockObj.badKey,
+      NaN, () => {}, Error, new Error(), Object,
+    ];
+    monkeyInputs.map((input) => {
+      assert.doesNotThrow(() => t(input), 'Monkey test caught something!');
+      return input;
+    });
+  });
+});
