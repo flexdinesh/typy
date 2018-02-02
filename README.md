@@ -1,4 +1,4 @@
-# Is Check [![Build Status](https://travis-ci.org/flexdinesh/is-check.svg?branch=master)](https://travis-ci.org/flexdinesh/is-check) [![dependencies Status](https://david-dm.org/flexdinesh/is-check/status.svg)](https://david-dm.org/flexdinesh/is-check) [![devDependencies Status](https://david-dm.org/flexdinesh/is-check/dev-status.svg)](https://david-dm.org/flexdinesh/is-check?type=dev) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+# Typy [![Build Status](https://travis-ci.org/flexdinesh/typy.svg?branch=master)](https://travis-ci.org/flexdinesh/typy) [![dependencies Status](https://david-dm.org/flexdinesh/typy/status.svg)](https://david-dm.org/flexdinesh/typy) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 **To Be Updated**
 

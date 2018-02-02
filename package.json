@@ -1,5 +1,5 @@
 {
-  "name": "is-check",
+  "name": "typy",
   "version": "0.0.0",
   "description": "Type checking library that never throws",
   "main": "./lib/index.js",
@@ -20,7 +20,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/flexdinesh/is-check.git"
+    "url": "git+https://github.com/flexdinesh/typy.git"
   },
   "keywords": [
     "type",
@@ -46,9 +46,9 @@
   "author": "Dineshkumar Pandiyan <flexdinesh@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/flexdinesh/is-check/issues"
+    "url": "https://github.com/flexdinesh/typy/issues"
   },
-  "homepage": "https://github.com/flexdinesh/is-check#readme",
+  "homepage": "https://github.com/flexdinesh/typy#readme",
   "devDependencies": {
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",

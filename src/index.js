@@ -1,5 +1,5 @@
 
-class TypeUtil {
+class Typy {
   constructor() {
     this.resetVal();
   }
@@ -114,5 +114,5 @@ class TypeUtil {
   }
 }
 
-const { t } = new TypeUtil();
+const { t } = new Typy();
 export default t;
