@@ -102,7 +102,7 @@ class TypeUtil {
     }
   }
 
-  check = (obj) => {
+  t = (obj) => {
     this.resetVal();
     this.evalUndefined(obj);
     if (this.isDefined) {
@@ -114,5 +114,5 @@ class TypeUtil {
   }
 }
 
-const { check } = new TypeUtil();
-export default check;
+const { t } = new TypeUtil();
+export default t;
