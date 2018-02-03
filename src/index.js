@@ -63,15 +63,12 @@ class Typy {
       Object.prototype.toString.call(obj) !== '[object Array]') {
       this.isObject = true;
       if (Object.keys(obj).length === 0) this.isEmptyObject = true;
-    }
-    if (typeof obj === 'string') {
+    } else if (typeof obj === 'string') {
       this.isString = true;
       if (obj.length === 0) this.isEmptyString = true;
-    }
-    if (Number.isInteger(obj)) {
+    } else if (Number.isInteger(obj)) {
       this.isNumber = true;
-    }
-    if (typeof obj === typeof (true)) {
+    } else if (typeof obj === typeof (true)) {
       this.isBoolean = true;
       if (obj === true) {
         this.isTrue = true;
