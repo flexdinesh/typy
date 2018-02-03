@@ -19,9 +19,6 @@ class Typy {
     this.isString = false;
     this.isEmptyString = false;
     this.isNumber = false;
-    this.isInt = false;
-    this.isPositiveInt = false;
-    this.isNegativeInt = false;
     this.isArray = false;
     this.isEmptyArray = false;
     this.isFunction = false;
@@ -77,9 +74,6 @@ class Typy {
     }
     if (Number.isInteger(obj)) {
       this.isNumber = true;
-      this.isInt = true;
-      if (obj > 0) this.isPositiveInt = true;
-      if (obj < 0) this.isNegativeInt = true;
     }
     if (typeof obj === typeof (true)) {
       this.isBoolean = true;

@@ -80,19 +80,6 @@ describe('Type', () => {
   it('should test if type is Number', () => {
     const obj = 22;
     assert(t(obj).isNumber === true, 'Number check didn\'t work :(');
-    assert(t(obj).isInt === true, 'Number check didn\'t work :(');
-  });
-
-  it('should test if Number is Positive/Negative Integer', () => {
-    const two = 2;
-    assert(t(two).isPositiveInt === true, 'Positive Integer check didn\'t work :(');
-    assert(t(two).isNegativeInt === false, 'Positive Integer check didn\'t work :(');
-    const zero = 0;
-    assert(t(zero).isPositiveInt === false, 'Positive Integer check didn\'t work :(');
-    assert(t(zero).isNegativeInt === false, 'Positive Integer check didn\'t work :(');
-    const minusTwo = -2;
-    assert(t(minusTwo).isPositiveInt === false, 'Positive Integer check didn\'t work :(');
-    assert(t(minusTwo).isNegativeInt === true, 'Positive Integer check didn\'t work :(');
   });
 
   it('should test if type is Boolean', () => {
