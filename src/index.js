@@ -58,7 +58,9 @@ class Typy {
   }
 
   evalType = (obj) => {
-    if (typeof obj === 'object' && obj !== null) {
+    if (
+      typeof obj === 'object' && obj === Object(obj) &&
+      Object.prototype.toString.call(obj) !== '[object Array]') {
       this.isObject = true;
       if (Object.keys(obj).length === 0) this.isEmptyObject = true;
     }

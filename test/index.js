@@ -115,9 +115,10 @@ describe('Type', () => {
     assert(t(obj).isFalse === true, 'True check didn\'t work :(');
   });
 
-  it.skip('should test if type is Array', () => {
+  it('should test if type is Array', () => {
     const obj = ['Howdy!'];
     assert(t(obj).isArray === true, 'Array check didn\'t work :(');
+    assert(t(obj).isObject === false, 'Array check didn\'t work :(');
   });
 
   it('should test if Array is Empty Array', () => {
