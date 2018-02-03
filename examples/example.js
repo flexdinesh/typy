@@ -8,11 +8,11 @@ const exampleObj = {
   }
 };
 
-console.log(`exampleObj is definied - ${t(exampleObj).isDefined}`); // true
-console.log(`exampleObj.goodKey is definied - ${t(exampleObj, 'goodKey').isDefined}`); // true
-console.log(`exampleObj.badKey is definied - ${t(exampleObj, 'badKey').isDefined}`); // false
-console.log(`exampleObj.badKey is undefinied - ${t(exampleObj, 'badKey').isUndefined}`); // false
-console.log(`exampleObj.nestedKey.nestedGoodKey is definied - ${t(exampleObj, 'nestedKey.nestedGoodKey').isDefined}`); // true
+console.log(`exampleObj is defined - ${t(exampleObj).isDefined}`); // true
+console.log(`exampleObj.goodKey is defined - ${t(exampleObj, 'goodKey').isDefined}`); // true
+console.log(`exampleObj.badKey is defined - ${t(exampleObj, 'badKey').isDefined}`); // false
+console.log(`exampleObj.badKey is undefined - ${t(exampleObj, 'badKey').isUndefined}`); // false
+console.log(`exampleObj.nestedKey.nestedGoodKey is defined - ${t(exampleObj, 'nestedKey.nestedGoodKey').isDefined}`); // true
 console.log(`exampleObj.nestedKey.nestedGoodKey is undefined - ${t(exampleObj, 'badKey.nestedGoodKey').isDefined}`); // false
 console.log(`exampleObj.nestedKey.nestedGoodKey is undefined - ${t(exampleObj, 'badKey.nestedGoodKey').isUndefined}`); // true
 
