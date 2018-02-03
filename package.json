@@ -1,7 +1,7 @@
 {
   "name": "typy",
   "version": "0.0.0",
-  "description": "Type checking library that never throws",
+  "description": "Minimal Javascript type checking library",
   "main": "./lib/index.js",
   "scripts": {
     "clean": "rimraf lib",
