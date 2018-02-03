@@ -116,7 +116,7 @@ describe('Type', () => {
 });
 
 describe('Monkey Test', () => {
-  it('should not throw error for any value', () => {
+  it('should not throw error for any input', () => {
     const mockObj = { goodKey: 'hello' };
     const monkeyInputs = [
       1, 0, -1, '', 'hey', true, false, {}, { yo: 'yoyo' },
