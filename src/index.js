@@ -1,3 +1,4 @@
+import { getNestedObject } from './util';
 
 class Typy {
   constructor() {
@@ -25,19 +26,12 @@ class Typy {
   }
 
   evalUndefined = (obj) => {
-    try {
-      if (typeof obj !== 'undefined') {
-        this.isDefined = true;
-        this.isUndefined = false;
-      } else {
-        this.isDefined = false;
-        this.isUndefined = true;
-        this.isFalsy = true;
-        this.isNullOrUndefined = true;
-      }
-    } catch (e) {
-      this.isUndefined = true;
+    if (typeof obj !== 'undefined') {
+      this.isDefined = true;
+      this.isUndefined = false;
+    } else {
       this.isDefined = false;
+      this.isUndefined = true;
       this.isFalsy = true;
       this.isNullOrUndefined = true;
     }
@@ -96,8 +90,12 @@ class Typy {
     }
   }
 
-  t = (obj) => {
+  t = (obj, nestedKeys) => {
     this.resetVal();
+    if (nestedKeys) {
+      obj = getNestedObject(obj, nestedKeys); // eslint-disable-line
+    }
+
     this.evalUndefined(obj);
     if (this.isDefined) {
       this.evalNull(obj);
