@@ -15,11 +15,26 @@ describe('Defined/Undefined', () => {
   it('should test if nested object/key is defined', () => {
     const deepObj = {
       nestedKey: {
-        goodKey: 'hello'
+        goodKey: 'hello',
+        numberKey: 10,
+        zeroKey: 0,
+        objKey: {}
       }
     };
     assert(t(deepObj, 'nestedKey.goodKey').isDefined === true, 'Nested Defined check didn\'t work :(');
     assert(t(deepObj, 'nestedKey.goodKey').isUndefined === false);
+    assert(t(deepObj, 'nestedKey.goodKey').isString === true);
+    assert(t(deepObj, 'nestedKey.numberKey').isNumber === true);
+    assert(t(deepObj, 'nestedKey.numberKey').isTruthy === true);
+    assert(t(deepObj, 'nestedKey.numberKey').isFalsy === false);
+    assert(t(deepObj, 'nestedKey.zeroKey').isNumber === true);
+    assert(t(deepObj, 'nestedKey.zeroKey').isTruthy === false);
+    assert(t(deepObj, 'nestedKey.zeroKey').isFalsy === true);
+    assert(t(deepObj, 'nestedKey.objKey').isDefined === true);
+    assert(t(deepObj, 'nestedKey.objKey').isUndefined === false);
+    assert(t(deepObj, 'nestedKey.objKey').isObject === true);
+    assert(t(deepObj, 'nestedKey.objKey').isFunction === false);
+    assert(t(deepObj, 'nestedKey.objKey').isArray === false);
   });
 
   it('should test if object/key is undefined', () => {
