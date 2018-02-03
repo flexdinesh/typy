@@ -2,13 +2,19 @@
 const t = require('../lib');
 
 const exampleObj = {
-  goodKey: 'I exist :)'
+  goodKey: 'I exist :)',
+  nestedKey: {
+    nestedGoodKey: 'Me too!'
+  }
 };
 
 console.log(`exampleObj is definied - ${t(exampleObj).isDefined}`); // true
 console.log(`exampleObj.goodKey is definied - ${t(exampleObj, 'goodKey').isDefined}`); // true
 console.log(`exampleObj.badKey is definied - ${t(exampleObj, 'badKey').isDefined}`); // false
 console.log(`exampleObj.badKey is undefinied - ${t(exampleObj, 'badKey').isUndefined}`); // false
+console.log(`exampleObj.nestedKey.nestedGoodKey is definied - ${t(exampleObj, 'nestedKey.nestedGoodKey').isDefined}`); // true
+console.log(`exampleObj.nestedKey.nestedGoodKey is undefined - ${t(exampleObj, 'badKey.nestedGoodKey').isDefined}`); // false
+console.log(`exampleObj.nestedKey.nestedGoodKey is undefined - ${t(exampleObj, 'badKey.nestedGoodKey').isUndefined}`); // true
 
 const nullObj = null;
 console.log(`nullObj is null - ${t(nullObj).isNull}`); // true
