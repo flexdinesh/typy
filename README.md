@@ -28,7 +28,8 @@ $ npm install --save typy
 ## Usage
 
 ```js
-import t from 'typy';
+import t from 'typy'; // ES6 style import
+// var t = require('typy'); // ES5 style import
 
 if (t('hello').isString) { // => true
   console.log('Input is a String!')
