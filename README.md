@@ -234,7 +234,7 @@ const obj = {
 }
 
 t(obj).isObject // => true
-t({}).isObject // => false
+t({}).isObject // => true
 ```
 
 _Note: Only { } objects will return this as true as opposed to javascript definition of Object which includes Arrays, Functions, anything and everything related to prototype. This is an intentional behavior as we don't want arrays to return true for isObject._
