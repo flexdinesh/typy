@@ -56,6 +56,30 @@ t(obj, 'badKey.nestedKey').isString // => false
 
 ## API
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+  - [t(input, optionalObjectPath)](#tinput-optionalobjectpath)
+  - [isDefined](#isdefined)
+  - [isUndefined](#isundefined)
+  - [isNull](#isnull)
+  - [isNullOrUndefined](#isnullorundefined)
+  - [isBoolean](#isboolean)
+  - [isTrue](#istrue)
+  - [isFalse](#isfalse)
+  - [isTruthy](#istruthy)
+  - [isFalsy](#isfalsy)
+  - [isObject](#isobject)
+  - [isEmptyObject](#isemptyobject)
+  - [isString](#isstring)
+  - [isEmptyString](#isemptystring)
+  - [isNumber](#isnumber)
+  - [isArray](#isarray)
+  - [isEmptyArray](#isemptyarray)
+  - [isFunction](#isfunction)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
 #### t(input, optionalObjectPath)
 
 Pass in your input to the t() method and **Typy** will take care of everything
