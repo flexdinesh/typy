@@ -1,8 +1,11 @@
 # Typy
 
+[![Join the chat at https://gitter.im/flexdinesh/typy](https://badges.gitter.im/flexdinesh/typy.svg)](https://gitter.im/flexdinesh/typy?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.org/flexdinesh/typy.svg?branch=master)](https://travis-ci.org/flexdinesh/typy)
 [![dependencies Status](https://david-dm.org/flexdinesh/typy/status.svg)](https://david-dm.org/flexdinesh/typy)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Gitter](https://badges.gitter.im/flexdinesh/typy.svg)](https://gitter.im/flexdinesh/typy?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 Type checking library for JavaScript with a _'sweeter'_ syntax.
 
