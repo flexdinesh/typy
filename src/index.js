@@ -66,7 +66,7 @@ class Typy {
     } else if (typeof obj === 'string') {
       this.isString = true;
       if (obj.length === 0) this.isEmptyString = true;
-    } else if (Number.isInteger(obj)) {
+    } else if (Number.isFinite(obj)) {
       this.isNumber = true;
     } else if (typeof obj === typeof (true)) {
       this.isBoolean = true;
