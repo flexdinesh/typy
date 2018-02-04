@@ -109,8 +109,16 @@ describe('Type', () => {
   });
 
   it('should test if type is Number', () => {
-    const obj = 22;
-    assert(t(obj).isNumber === true, 'Number check didn\'t work :(');
+    let num = 22;
+    assert(t(num).isNumber === true, 'Number check didn\'t work :(');
+    num = -22;
+    assert(t(num).isNumber === true, 'Number check didn\'t work :(');
+    num = 0;
+    assert(t(num).isNumber === true, 'Number check didn\'t work :(');
+    num = 22.345;
+    assert(t(num).isNumber === true, 'Number check didn\'t work :(');
+    num = 'number';
+    assert(t(num).isNumber === false, 'Number check didn\'t work :(');
   });
 
   it('should test if type is Boolean', () => {
