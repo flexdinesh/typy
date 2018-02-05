@@ -155,6 +155,16 @@ describe('Type', () => {
   });
 });
 
+describe('New Instance', () => {
+  it('should return new instance for each input', () => {
+    const stringType = t('hello');
+    assert(stringType.isString === true, 'New Instance check didn\'t work :(');
+    const numberType = t(123);
+    assert(numberType.isNumber === true, 'New Instance check didn\'t work :(');
+    assert(stringType.isString === true, 'New Instance check didn\'t work :(');
+  });
+});
+
 describe('Monkey Test', () => {
   it('should not throw error for any input', () => {
     const mockObj = { goodKey: 'hello' };

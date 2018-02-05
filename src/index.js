@@ -105,5 +105,5 @@ class Typy {
   }
 }
 
-const { t } = new Typy();
+const t = (input, objectPath) => new Typy().t(input, objectPath);
 export default t;
