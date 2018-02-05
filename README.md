@@ -55,6 +55,18 @@ t(obj, 'badKey.nestedKey').isDefined // => false
 // to check if obj.goodKey.nestedKey is a string
 t(obj, 'goodKey.nestedKey').isString // => true
 t(obj, 'badKey.nestedKey').isString // => false
+
+const deepObj = {
+  nestedKey: {
+    goodKey: 'hello',
+    superNestedKey: {}
+  }
+};
+// Typy can safely return the value from a nested key in an object
+const myObj = t(deepObj, 'nestedKey.goodKey').safeObject; // => 'hello'
+// Typy won't throw if the key at any level is not found
+// instead will return undefined
+const myObj = t(deepObj, 'badKey.goodKey').safeObject; // => undefined
 ```
 
 ## API
@@ -79,6 +91,8 @@ t(obj, 'badKey.nestedKey').isString // => false
   - [isArray](#isarray)
   - [isEmptyArray](#isemptyarray)
   - [isFunction](#isfunction)
+  - [safeObject](#safeobject)
+  - [safeString](#safestring)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -321,6 +335,37 @@ Returns _true_ if the input is a function.
 const func = () => {};
 t(func).isFunction // => true
 t({}).isFunction // => false
+```
+
+
+#### safeObject
+
+Safely returns the value in a nested path from the input object without throwing any error.
+
+```js
+const deepObj = {
+  nestedKey: {
+    goodKey: 'hello',
+    superNestedKey: {}
+  }
+};
+// Typy can safely return the value from a nested key in an object
+const myObj = t(deepObj, 'nestedKey.goodKey').safeObject; // => 'hello'
+// Typy won't throw if the key at any level is not found
+// instead will return undefined
+const myObj = t(deepObj, 'badKey.goodKey').safeObject; // => undefined
+```
+
+
+#### safeString
+
+Returns the string value if the input type is string or will return an empty string `''`.
+
+```js
+const myObj = t('typy is safe').safeString; // => 'typy is safe'
+const myObj = t(null).safeString; // => ''
+const myObj = t(undefined).safeString; // => ''
+const myObj = t(22).safeString; // => ''
 ```
 
 
