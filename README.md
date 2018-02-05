@@ -340,7 +340,7 @@ t({}).isFunction // => false
 
 #### safeObject
 
-Safely returns the value in a nested path from the input object without throwing any error.
+Safely returns the value from a nested object path without throwing any error.
 
 ```js
 const deepObj = {
