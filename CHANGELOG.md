@@ -1,6 +1,12 @@
 # Changelog
 
 
+## 1.4.0 (6 Feb 2018)
+
+* Two new getters are available in Typy
+  * `safeObject` returns the value from a nested object path without throwing
+  * `safeString` returns the value if input is string or returns empty string
+
 ## 1.3.0 (5 Feb 2018)
 
 * Performance optimizations
