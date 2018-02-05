@@ -1,107 +1,104 @@
 import { getNestedObject } from './util';
 
 class Typy {
-  constructor() {
-    this.resetVal();
-  }
-
-  resetVal() {
-    this.isUndefined = false;
-    this.isDefined = false;
-    this.isNull = false;
-    this.isNullOrUndefined = false;
-    this.isBoolean = false;
-    this.isTrue = false;
-    this.isFalse = false;
-    this.isTruthy = false;
-    this.isFalsy = false;
-    this.isObject = false;
-    this.isEmptyObject = false;
-    this.isString = false;
-    this.isEmptyString = false;
-    this.isNumber = false;
-    this.isArray = false;
-    this.isEmptyArray = false;
-    this.isFunction = false;
-  }
-
-  evalUndefined = (obj) => {
-    if (typeof obj !== 'undefined') {
-      this.isDefined = true;
-      this.isUndefined = false;
-    } else {
-      this.isDefined = false;
-      this.isUndefined = true;
-      this.isFalsy = true;
-      this.isNullOrUndefined = true;
-    }
-  }
-
-  evalNull = (obj) => {
-    if (obj === null && typeof obj === 'object') {
-      this.isNull = true;
-      this.isNullOrUndefined = true;
-    } else {
-      this.isNull = false;
-    }
-  }
-
-  evalTruthyOrFalsy = (obj) => {
-    if (obj) {
-      this.isTruthy = true;
-      this.isFalsy = false;
-    }
-    if (!obj) {
-      this.isFalsy = true;
-      this.isTruthy = false;
-    }
-  }
-
-  evalType = (obj) => {
-    if (
-      typeof obj === 'object' && obj === Object(obj) &&
-      Object.prototype.toString.call(obj) !== '[object Array]') {
-      this.isObject = true;
-      if (Object.keys(obj).length === 0) this.isEmptyObject = true;
-    } else if (typeof obj === 'string') {
-      this.isString = true;
-      if (obj.length === 0) this.isEmptyString = true;
-    } else if (Number.isFinite(obj)) {
-      this.isNumber = true;
-    } else if (typeof obj === typeof (true)) {
-      this.isBoolean = true;
-      if (obj === true) {
-        this.isTrue = true;
-        this.isFalse = false;
-      }
-      if (obj === false) {
-        this.isFalse = true;
-        this.isTrue = false;
-      }
-    }
-    if (Array.isArray(obj)) {
-      this.isArray = true;
-      if (obj.length === 0) this.isEmptyArray = true;
-    }
-
-    if (typeof obj === 'function') {
-      this.isFunction = true;
-    }
-  }
-
   t = (obj, nestedKeys) => {
-    this.resetVal();
+    this.input = obj;
+
     if (nestedKeys) {
-      obj = getNestedObject(obj, nestedKeys); // eslint-disable-line
+      this.input = getNestedObject(this.input, nestedKeys); // eslint-disable-line
     }
 
-    this.evalUndefined(obj);
-    if (this.isDefined) {
-      this.evalNull(obj);
-      this.evalTruthyOrFalsy(obj);
-      this.evalType(obj);
-    }
     return this;
+  }
+
+  get isDefined() {
+    if (typeof this.input !== 'undefined') return true;
+    return false;
+  }
+
+  get isUndefined() {
+    if (typeof this.input === 'undefined') return true;
+    return false;
+  }
+
+  get isNull() {
+    if (this.input === null && typeof this.input === 'object') return true;
+    return false;
+  }
+
+  get isNullOrUndefined() {
+    if (this.isNull || this.isUndefined) return true;
+    return false;
+  }
+
+  get isBoolean() {
+    if (typeof this.input === typeof (true)) return true;
+    return false;
+  }
+
+  get isTrue() {
+    if (this.input === true) return true;
+    return false;
+  }
+
+  get isFalse() {
+    if (this.input === false) return true;
+    return false;
+  }
+
+  get isTruthy() {
+    if (this.input) return true;
+    return false;
+  }
+
+  get isFalsy() {
+    if (!this.input) return true;
+    return false;
+  }
+
+  get isObject() {
+    if (
+      typeof this.input === 'object' && this.input === Object(this.input) &&
+      Object.prototype.toString.call(this.input) !== '[object Array]'
+    ) {
+      return true;
+    }
+    return false;
+  }
+
+  get isEmptyObject() {
+    if (this.isObject && Object.keys(this.input).length === 0) return true;
+    return false;
+  }
+
+  get isString() {
+    if (typeof this.input === 'string') return true;
+    return false;
+  }
+
+  get isEmptyString() {
+    if (this.isString && this.input.length === 0) return true;
+    return false;
+  }
+
+  get isNumber() {
+    if (Number.isFinite(this.input)) return true;
+    return false;
+  }
+
+  get isArray() {
+    if (Array.isArray(this.input)) return true;
+    return false;
+  }
+
+  get isEmptyArray() {
+    if (this.isArray && this.input.length === 0) return true;
+    return false;
+  }
+
+  get isFunction() {
+    if (typeof this.input === 'function') return true;
+    return false;
   }
 }
 

@@ -33,6 +33,8 @@ describe('Typy', () => {
       assert(t(deepObj, 'nestedKey.zeroKey').isNumber === true);
       assert(t(deepObj, 'nestedKey.zeroKey').isTruthy === false);
       assert(t(deepObj, 'nestedKey.zeroKey').isFalsy === true);
+      assert(t(deepObj.nestedKey).isDefined === true);
+      assert(t(deepObj, 'nestedKey').isDefined === true);
       assert(t(deepObj, 'nestedKey.objKey').isDefined === true);
       assert(t(deepObj, 'nestedKey.objKey').isUndefined === false);
       assert(t(deepObj, 'nestedKey.objKey').isObject === true);
@@ -46,6 +48,7 @@ describe('Typy', () => {
     });
 
     it('should test if nested object/key is undefined', () => {
+      assert(t(obj, 'goodKey.badKey').isUndefined === true, 'Nested Undefined check didn\'t work :(');
       assert(t(obj, 'badKey.superBadKey').isUndefined === true, 'Nested Undefined check didn\'t work :(');
       assert(t(obj, 'badKey.superBadKey').isDefined === false);
     });
