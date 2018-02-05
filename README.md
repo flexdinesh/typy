@@ -64,8 +64,8 @@ const deepObj = {
 };
 // Typy can safely return the value from a nested key in an object
 const myObj = t(deepObj, 'nestedKey.goodKey').safeObject; // => 'hello'
-// Typy won't throw if the key at any level is not found
-// instead will return undefined
+// Typy won't throw undefined error for badKey.goodKey
+// instead the return value will be undefined
 const myObj = t(deepObj, 'badKey.goodKey').safeObject; // => undefined
 ```
 
