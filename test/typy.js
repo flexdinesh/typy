@@ -161,6 +161,51 @@ describe('Typy', () => {
     });
   });
 
+  describe('Safe Object', () => {
+    const deepObj = {
+      nestedKey: {
+        goodKey: 'hello',
+        numberKey: 10,
+        zeroKey: 0,
+        objKey: {}
+      }
+    };
+
+    it('should return the object if found in path', () => {
+      assert.deepEqual(t(deepObj).safeObject, deepObj, 'Safe Object check didn\'t work :(');
+      assert.deepEqual(t(deepObj.nestedKey).safeObject, deepObj.nestedKey, 'Safe Object check didn\'t work :(');
+      assert.deepEqual(t(deepObj, 'nestedKey').safeObject, deepObj.nestedKey, 'Safe Object check didn\'t work :(');
+      assert.deepEqual(t(deepObj.nestedKey.goodKey).safeObject, deepObj.nestedKey.goodKey, 'Safe Object check didn\'t work :(');
+      assert.deepEqual(t(deepObj, 'nestedKey.goodKey').safeObject, deepObj.nestedKey.goodKey, 'Safe Object check didn\'t work :(');
+    });
+
+    it('should not throw if object not found in path', () => {
+      assert.deepEqual(t(deepObj, 'badkey').safeObject, undefined, 'Safe Object check didn\'t work :(');
+      assert.deepEqual(t(deepObj, 'badKey.goodKey').safeObject, undefined, 'Safe Object check didn\'t work :(');
+    });
+  });
+
+  describe('Safe String', () => {
+    it('should return the string if type is string', () => {
+      const str = 'hello there';
+      assert(t(str).safeString === str, 'Safe String check didn\'t work :(');
+    });
+
+    it('should return empty string if type is not string', () => {
+      let obj = null;
+      assert(t(obj).safeString === '', 'Safe String check didn\'t work :(');
+      obj = 22;
+      assert(t(obj).safeString === '', 'Safe String check didn\'t work :(');
+      obj = {};
+      assert(t(obj).safeString === '', 'Safe String check didn\'t work :(');
+      obj = undefined;
+      assert(t(obj).safeString === '', 'Safe String check didn\'t work :(');
+      obj = [];
+      assert(t(obj).safeString === '', 'Safe String check didn\'t work :(');
+      assert(t(obj.badKey).safeString === '', 'Safe String check didn\'t work :(');
+    });
+  });
+
   describe('New Instance', () => {
     it('should return new instance for each input', () => {
       const stringType = t('hello');

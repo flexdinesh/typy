@@ -5,7 +5,7 @@ class Typy {
     this.input = obj;
 
     if (nestedKeys) {
-      this.input = getNestedObject(this.input, nestedKeys); // eslint-disable-line
+      this.input = getNestedObject(this.input, nestedKeys);
     }
 
     return this;
@@ -99,6 +99,15 @@ class Typy {
   get isFunction() {
     if (typeof this.input === 'function') return true;
     return false;
+  }
+
+  get safeObject() {
+    return this.input;
+  }
+
+  get safeString() {
+    if (this.isString) return this.input;
+    return '';
   }
 }
 
