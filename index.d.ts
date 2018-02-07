@@ -1,10 +1,10 @@
 declare module "typy" {
 
-	export default function typy (input: any, objectPath): Typy
+	export default function typy (input: any, objectPath: any): Typy
 
 	class Typy {
 
-		t: (obj: any, nestedKeys) => Typy
+		t: (obj: any, nestedKeys: any) => Typy
 
 		readonly isDefined: boolean
 		readonly isUndefined: boolean
