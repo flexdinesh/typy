@@ -7,36 +7,23 @@ export const stripArrayIndexFromArrayPath = (path) => {
 };
 
 export const getNestedObject = (obj, dotSeparatedKeys) => {
-  // eslint-disable-next-line
-  let objUndefined = true;
-  let safeObj = obj;
-
+  if (arguments.length > 1 && typeof dotSeparatedKeys !== 'string') return undefined;
   if (typeof obj !== 'undefined' && typeof dotSeparatedKeys === 'string') {
-    objUndefined = false;
-    const keys = dotSeparatedKeys.split('.');
-
-    for (let i = 0; i < keys.length; i += 1) {
-      const key = keys[i];
-      if (key.includes('[')) {
-        const objKey = stripKeyFromArrayPath(key);
-        const arrIndex = stripArrayIndexFromArrayPath(key);
-        if (
-          Array.isArray(safeObj[objKey]) &&
-          safeObj[objKey].length >= (arrIndex + 1)
-        ) {
-          safeObj = safeObj[objKey][arrIndex];
+    const pathArr = dotSeparatedKeys.split('.');
+    pathArr.forEach((key, idx, arr) => {
+      if (typeof key === 'string' && key.includes('[')) {
+        try {
+          arr.splice((idx + 1), 0, Number(/\[([^)]+)\]/.exec(key)[1]));
+          arr[idx] = key.slice(0, -3); // eslint-disable-line no-param-reassign
+        } catch (e) {
+          // do nothing
         }
-      } else if (typeof safeObj[key] !== 'undefined') {
-        safeObj = safeObj[key];
-      } else {
-        objUndefined = true;
-        break;
       }
-    }
+    });
+    // eslint-disable-next-line no-param-reassign, no-confusing-arrow
+    obj = pathArr.reduce((o, key) => (o && o[key] !== 'undefined') ? o[key] : undefined, obj);
   }
-
-  if (!objUndefined) return safeObj;
-  return undefined;
+  return obj;
 };
 
 export const printAllMatchedTypes = (obj) => {
