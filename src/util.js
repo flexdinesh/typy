@@ -1,3 +1,11 @@
+export const stripKeyFromArrayPath = path => path.split('[').shift();
+
+export const stripArrayIndexFromArrayPath = (path) => {
+  const matches = /\[([^)]+)\]/.exec(path);
+  if (Array.isArray(matches) && matches.length >= 1) return Number(matches[1]);
+  return path;
+};
+
 export const getNestedObject = (obj, dotSeparatedKeys) => {
   // eslint-disable-next-line
   let objUndefined = true;
@@ -9,7 +17,16 @@ export const getNestedObject = (obj, dotSeparatedKeys) => {
 
     for (let i = 0; i < keys.length; i += 1) {
       const key = keys[i];
-      if (typeof safeObj[key] !== 'undefined') {
+      if (key.includes('[')) {
+        const objKey = stripKeyFromArrayPath(key);
+        const arrIndex = stripArrayIndexFromArrayPath(key);
+        if (
+          Array.isArray(safeObj[objKey]) &&
+          safeObj[objKey].length >= (arrIndex + 1)
+        ) {
+          safeObj = safeObj[objKey][arrIndex];
+        }
+      } else if (typeof safeObj[key] !== 'undefined') {
         safeObj = safeObj[key];
       } else {
         objUndefined = true;

@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { getNestedObject } from '../src/util';
+import { getNestedObject, stripArrayIndexFromArrayPath, stripKeyFromArrayPath } from '../src/util';
 
 describe('Nested Object/Keys Check', () => {
   it('should return nested object if exists', () => {
@@ -27,6 +27,36 @@ describe('Nested Object/Keys Check', () => {
     assert(getNestedObject(mockDeepObj, 'nestedKey.badKey') === undefined);
   });
 
+  it('should return nested object when array element is in path', () => {
+    let mockObj = {
+      nestedArray: [
+        { goodKey: 'hello one' },
+        { goodKey: 'hello two' }
+      ]
+    };
+    assert(getNestedObject(mockObj, 'nestedArray[0].goodKey') === 'hello one');
+    assert(getNestedObject(mockObj, 'nestedArray[1].goodKey') === 'hello two');
+
+    mockObj = {
+      nestedArray: ['a', 'b']
+    };
+    assert(getNestedObject(mockObj, 'nestedArray[0]') === 'a');
+    assert(getNestedObject(mockObj, 'nestedArray[1]') === 'b');
+  });
+
+  it('should return undefined when array element in path does not exist', () => {
+    const mockObj = {
+      nestedArray: [
+        { goodKey: 'hello one' },
+        { goodKey: 'hello two' }
+      ]
+    };
+    assert(getNestedObject(mockObj, 'badArray[0].goodKey') === undefined);
+    assert(getNestedObject(mockObj, 'nestedArray[1].goodKey.badkey') === undefined);
+    assert(getNestedObject(mockObj, 'nestedArray[2].goodKey') === undefined);
+    assert(getNestedObject(mockObj, 'nestedArray.goodKey') === undefined);
+  });
+
   it('monkey test nested object', () => {
     const mockObj = { goodKey: 'hello' };
     assert(getNestedObject(mockObj, 'goodKey,badkey') === undefined);
@@ -34,5 +64,18 @@ describe('Nested Object/Keys Check', () => {
     assert(getNestedObject(mockObj, 1) === undefined);
     assert(getNestedObject(mockObj, 0) === undefined);
     assert(getNestedObject(mockObj, {}) === undefined);
+  });
+});
+
+describe('Key from array str path', () => {
+  it('should return key from array path', () => {
+    assert(stripKeyFromArrayPath('key[0]') === 'key');
+  });
+});
+
+describe('Array index from array str path', () => {
+  it('should return array index from array path', () => {
+    assert(stripArrayIndexFromArrayPath('key[0]') === 0);
+    assert(stripArrayIndexFromArrayPath('key[22]') === 22);
   });
 });

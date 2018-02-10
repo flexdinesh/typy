@@ -354,6 +354,20 @@ const myObj = t(deepObj, 'nestedKey.goodKey').safeObject; // => 'hello'
 // Typy won't throw if the key at any level is not found
 // instead will return undefined
 const myObj = t(deepObj, 'badKey.goodKey').safeObject; // => undefined
+
+const anotherDeepObj = {
+  nestedArray: [{
+      goodKey: 'hello one',
+      superNestedKey: {}
+    }, {
+      goodKey: 'hello two',
+      superNestedKey: {
+        superGoodKey: 'typy is great :)'
+      }
+    }]
+  // Typy can safely return the value even from a nested key in a nested array
+  const myObj = t(deepObj, 'nestedArray[1].superNestedKey.superGoodKey').safeObject; // => 'typy is great :)'
+};
 ```
 
 
