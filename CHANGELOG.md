@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.4.3 (5 Feb 2018)
+
+* Added support for use in TypeScript codebases
 
 ## 1.4.0 (6 Feb 2018)
 
