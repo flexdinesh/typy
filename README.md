@@ -385,4 +385,4 @@ const myObj = t(22).safeString; // => ''
 
 ## License
 
-MIT © Dineshkumar Pandiyan
+MIT © Dinesh Pandiyan
