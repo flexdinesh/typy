@@ -1,5 +1,9 @@
 # Changelog
 
+## To be released
+
+* Package minified with >60% compression
+
 ## 1.4.3 (5 Feb 2018)
 
 * Added support for use in TypeScript codebases
