@@ -9,7 +9,7 @@ class Typy {
     }
 
     return this;
-  }
+  };
 
   get isDefined() {
     if (typeof this.input !== 'undefined') return true;
@@ -32,7 +32,7 @@ class Typy {
   }
 
   get isBoolean() {
-    if (typeof this.input === typeof (true)) return true;
+    if (typeof this.input === typeof true) return true;
     return false;
   }
 
@@ -58,7 +58,8 @@ class Typy {
 
   get isObject() {
     if (
-      typeof this.input === 'object' && this.input === Object(this.input) &&
+      typeof this.input === 'object' &&
+      this.input === Object(this.input) &&
       Object.prototype.toString.call(this.input) !== '[object Array]'
     ) {
       return true;

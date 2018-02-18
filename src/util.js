@@ -5,7 +5,7 @@ export const getNestedObject = (obj, dotSeparatedKeys) => {
     pathArr.forEach((key, idx, arr) => {
       if (typeof key === 'string' && key.includes('[')) {
         try {
-          arr.splice((idx + 1), 0, Number(/\[([^)]+)\]/.exec(key)[1]));
+          arr.splice(idx + 1, 0, Number(/\[([^)]+)\]/.exec(key)[1]));
           arr[idx] = key.slice(0, -3); // eslint-disable-line no-param-reassign
         } catch (e) {
           // do nothing
@@ -13,7 +13,7 @@ export const getNestedObject = (obj, dotSeparatedKeys) => {
       }
     });
     // eslint-disable-next-line no-param-reassign, no-confusing-arrow
-    obj = pathArr.reduce((o, key) => (o && o[key] !== 'undefined') ? o[key] : undefined, obj);
+    obj = pathArr.reduce((o, key) => (o && o[key] !== 'undefined' ? o[key] : undefined), obj);
   }
   return obj;
 };
