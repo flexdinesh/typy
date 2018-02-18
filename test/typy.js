@@ -1,6 +1,5 @@
 import { assert } from 'chai';
 import Typy from '../src/typy';
-// import printAllMatchedTypes from '../src/util';
 
 describe('Typy', () => {
   const t = (input, objectPath) => new Typy().t(input, objectPath);

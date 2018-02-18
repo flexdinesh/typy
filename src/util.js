@@ -1,11 +1,3 @@
-export const stripKeyFromArrayPath = path => path.split('[').shift();
-
-export const stripArrayIndexFromArrayPath = (path) => {
-  const matches = /\[([^)]+)\]/.exec(path);
-  if (Array.isArray(matches) && matches.length >= 1) return Number(matches[1]);
-  return path;
-};
-
 export const getNestedObject = (obj, dotSeparatedKeys) => {
   if (arguments.length > 1 && typeof dotSeparatedKeys !== 'string') return undefined;
   if (typeof obj !== 'undefined' && typeof dotSeparatedKeys === 'string') {
@@ -24,27 +16,4 @@ export const getNestedObject = (obj, dotSeparatedKeys) => {
     obj = pathArr.reduce((o, key) => (o && o[key] !== 'undefined') ? o[key] : undefined, obj);
   }
   return obj;
-};
-
-export const printAllMatchedTypes = (obj) => {
-  // eslint-disable-next-line
-  console.log(`
-    isUndefined: ${obj.isUndefined}
-    isDefined: ${obj.isDefined}
-    isNull: ${obj.isNull}
-    isNullOrUndefined: ${obj.isNullOrUndefined}
-    isBoolean: ${obj.isBoolean}
-    isTrue: ${obj.isTrue}
-    isFalse: ${obj.isFalse}
-    isTruthy: ${obj.isTruthy}
-    isFalsy: ${obj.isFalsy}
-    isObject: ${obj.isObject}
-    isEmptyObject: ${obj.isEmptyObject}
-    isString: ${obj.isString}
-    isEmptyString: ${obj.isEmptyString}
-    isNumber: ${obj.isNumber}
-    isArray: ${obj.isArray}
-    isEmptyArray: ${obj.isEmptyArray}
-    isFunction: ${obj.isFunction}
-    `);
 };

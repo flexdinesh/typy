@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { getNestedObject, stripArrayIndexFromArrayPath, stripKeyFromArrayPath } from '../src/util';
+import { getNestedObject } from '../src/util';
 
 describe('Nested Object/Keys Check', () => {
   it('should return nested object if exists', () => {
@@ -64,18 +64,5 @@ describe('Nested Object/Keys Check', () => {
     assert(getNestedObject(mockObj, 1) === undefined);
     assert(getNestedObject(mockObj, 0) === undefined);
     assert(getNestedObject(mockObj, {}) === undefined);
-  });
-});
-
-describe('Key from array str path', () => {
-  it('should return key from array path', () => {
-    assert(stripKeyFromArrayPath('key[0]') === 'key');
-  });
-});
-
-describe('Array index from array str path', () => {
-  it('should return array index from array path', () => {
-    assert(stripArrayIndexFromArrayPath('key[0]') === 0);
-    assert(stripArrayIndexFromArrayPath('key[22]') === 22);
   });
 });
