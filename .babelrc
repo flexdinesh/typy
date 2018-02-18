@@ -1,5 +1,5 @@
 {
-  "presets": ["stage-2", "es2015"],
+  "presets": ["env", "minify"],
   "plugins": [
     "add-module-exports",
     "transform-class-properties"
