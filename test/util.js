@@ -64,5 +64,6 @@ describe('Nested Object/Keys Check', () => {
     assert(getNestedObject(mockObj, 1) === undefined);
     assert(getNestedObject(mockObj, 0) === undefined);
     assert(getNestedObject(mockObj, {}) === undefined);
+    assert(getNestedObject(undefined, 'goodKey,badkey') === undefined);
   });
 });
