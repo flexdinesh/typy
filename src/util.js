@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 export const getNestedObject = (obj, dotSeparatedKeys) => {
   if (arguments.length > 1 && typeof dotSeparatedKeys !== 'string') return undefined;
   if (typeof obj !== 'undefined' && typeof dotSeparatedKeys === 'string') {
