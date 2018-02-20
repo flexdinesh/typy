@@ -44,3 +44,6 @@ lib
 
 # npm package lock
 package-lock.json
+
+others
+.DS_Store
