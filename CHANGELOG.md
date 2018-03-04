@@ -3,6 +3,8 @@
 ## To be released
 
 * Package minified with >60% compression
+* New getter added to Typy
+  * `safeNumber` returns the value if input is Number or returns 0
 
 ## 1.4.3 (5 Feb 2018)
 
