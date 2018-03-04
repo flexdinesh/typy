@@ -13,6 +13,7 @@ lib
 
 # npm package lock
 package-lock.json
+yarn.lock
 
 # project files
 src
