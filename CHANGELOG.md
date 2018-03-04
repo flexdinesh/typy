@@ -5,6 +5,7 @@
 * Package minified with >60% compression
 * New getter added to Typy
   * `safeNumber` returns the value if input is Number or returns 0
+  * `safeBoolean` returns the value if input is Boolean or returns false
 
 ## 1.4.3 (5 Feb 2018)
 
