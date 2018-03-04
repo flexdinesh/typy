@@ -46,8 +46,6 @@ t([]).isArray // => true
 t([]).isObject // => false
 
 // obj.goodKey.nestedKey = 'helloworld'
-// to check if obj.goodKey.nestedKey is defined
-// but you don't know if obj.goodKey exists
 t(obj, 'goodKey.nestedKey').isDefined // => true
 t(obj, 'badKey.nestedKey').isDefined // => false
 // Typy won't throw undefined error for badKey.nestedKey
@@ -62,7 +60,7 @@ const deepObj = {
     superNestedKey: {}
   }
 };
-// Typy can safely return the value from a nested key in an object
+// safely return the value from a nested key in an object
 const myObj = t(deepObj, 'nestedKey.goodKey').safeObject; // => 'hello'
 // Typy won't throw undefined error for badKey.goodKey
 // instead the return value will be undefined
