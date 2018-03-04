@@ -205,6 +205,27 @@ describe('Typy', () => {
     });
   });
 
+  describe('Safe Number', () => {
+    it('should return the number if type is number', () => {
+      const num = 22;
+      assert(t(num).safeNumber === num, 'Safe Number check didn\'t work :(');
+    });
+
+    it('should return 0 if type is not Number', () => {
+      let obj = null;
+      assert(t(obj).safeNumber === 0, 'Safe Number check didn\'t work :(');
+      obj = 'str';
+      assert(t(obj).safeNumber === 0, 'Safe Number check didn\'t work :(');
+      obj = {};
+      assert(t(obj).safeNumber === 0, 'Safe Number check didn\'t work :(');
+      obj = undefined;
+      assert(t(obj).safeNumber === 0, 'Safe Number check didn\'t work :(');
+      obj = [];
+      assert(t(obj).safeNumber === 0, 'Safe Number check didn\'t work :(');
+      assert(t(obj.badKey).safeNumber === 0, 'Safe Number check didn\'t work :(');
+    });
+  });
+
   describe('New Instance', () => {
     it('should return new instance for each input', () => {
       const stringType = t('hello');

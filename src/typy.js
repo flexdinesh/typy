@@ -110,6 +110,11 @@ class Typy {
     if (this.isString) return this.input;
     return '';
   }
+
+  get safeNumber() {
+    if (this.isNumber) return this.input;
+    return 0;
+  }
 }
 
 export default Typy;
