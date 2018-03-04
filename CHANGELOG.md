@@ -2,13 +2,15 @@
 
 ## To be released
 
+## 2.0.0 (4 Mar 2018)
+
 * Package minified with >60% compression
-* New getter added to Typy
+* New getters added
   * `safeNumber` returns the value if input is Number or returns 0
   * `safeBoolean` returns the value if input is Boolean or returns false
   * `safeFunction` returns the function if input is function or returns an empty function () => {}
 
-## 1.4.3 (5 Feb 2018)
+## 1.4.3 (6 Feb 2018)
 
 * Added support for use in TypeScript codebases
 
