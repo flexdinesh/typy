@@ -389,10 +389,10 @@ const str = t(22).safeString; // => ''
 Returns the number if the input type is Number or will return `0`.
 
 ```js
-const num = t(22).safeString; // => 22
-const num = t('22').safeString; // => 0
-const num = t(undefined).safeString; // => 0
-const num = t(null).safeString; // => 0
+const num = t(22).safeNumber; // => 22
+const num = t('22').safeNumber; // => 0
+const num = t(undefined).safeNumber; // => 0
+const num = t(null).safeNumber; // => 0
 ```
 
 
