@@ -226,6 +226,27 @@ describe('Typy', () => {
     });
   });
 
+  describe('Safe Boolean', () => {
+    it('should return the boolean if type is boolean', () => {
+      const bool = true;
+      assert(t(bool).safeBoolean === true, 'Safe Boolean check didn\'t work :(');
+    });
+
+    it('should return 0 if type is not Number', () => {
+      let obj = null;
+      assert(t(obj).safeBoolean === false, 'Safe Boolean check didn\'t work :(');
+      obj = 'str';
+      assert(t(obj).safeBoolean === false, 'Safe Boolean check didn\'t work :(');
+      obj = {};
+      assert(t(obj).safeBoolean === false, 'Safe Boolean check didn\'t work :(');
+      obj = undefined;
+      assert(t(obj).safeBoolean === false, 'Safe Boolean check didn\'t work :(');
+      obj = [];
+      assert(t(obj).safeBoolean === false, 'Safe Boolean check didn\'t work :(');
+      assert(t(obj.badKey).safeBoolean === false, 'Safe Boolean check didn\'t work :(');
+    });
+  });
+
   describe('New Instance', () => {
     it('should return new instance for each input', () => {
       const stringType = t('hello');

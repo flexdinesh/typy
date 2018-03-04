@@ -115,6 +115,11 @@ class Typy {
     if (this.isNumber) return this.input;
     return 0;
   }
+
+  get safeBoolean() {
+    if (this.isBoolean) return this.input;
+    return false;
+  }
 }
 
 export default Typy;
