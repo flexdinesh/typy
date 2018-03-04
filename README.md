@@ -367,7 +367,7 @@ const anotherDeepObj = {
   }]
 };
 // Typy can safely return the value even from a nested key in a nested array
-const myObj = t(deepObj, 'nestedArray[1].superNestedKey.superGoodKey').safeObject; // => 'typy is great :)'
+const myObj = t(anotherDeepObj, 'nestedArray[1].superNestedKey.superGoodKey').safeObject; // => 'typy is great :)'
 ```
 
 
