@@ -1,6 +1,6 @@
 {
   "name": "typy",
-  "version": "1.4.3",
+  "version": "2.0.0",
   "description": "Minimal JavaScript type checking library",
   "main": "./lib/index.js",
   "scripts": {
