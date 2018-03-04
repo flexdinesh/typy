@@ -6,12 +6,13 @@
   "scripts": {
     "clean": "rimraf lib",
     "test": "npm run lint && npm run cover",
-    "test:only": "cross-env BABEL_ENV=commonjs mocha --require babel-core/register --require babel-polyfill --recursive",
+    "test:only": "mocha --require babel-core/register --require babel-polyfill --recursive",
+    "test:prod": "cross-env BABEL_ENV=production npm run test",
     "test:watch": "npm test -- --watch",
     "test:examples": "node examples/",
-    "cover": "cross-env BABEL_ENV=commonjs istanbul cover _mocha -- --require babel-core/register --require babel-polyfill --recursive",
+    "cover": "istanbul cover _mocha -- --require babel-core/register --require babel-polyfill --recursive",
     "lint": "eslint src test",
-    "build": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
+    "build": "cross-env BABEL_ENV=production babel src --out-dir lib",
     "prepublish": "npm run clean && npm run lint && npm run test && npm run build"
   },
   "files": [

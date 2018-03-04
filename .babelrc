@@ -1,7 +1,18 @@
 {
-  "presets": ["env", "minify"],
-  "plugins": [
-    "add-module-exports",
-    "transform-class-properties"
-  ]
+  "env": {
+    "development": {
+      "presets": ["env"],
+      "plugins": [
+        "add-module-exports",
+        "transform-class-properties"
+      ]
+    },
+    "production": {
+      "presets": ["env", "minify"],
+      "plugins": [
+        "add-module-exports",
+        "transform-class-properties"
+      ]
+    }
+  }
 }
