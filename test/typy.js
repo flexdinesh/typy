@@ -247,6 +247,27 @@ describe('Typy', () => {
     });
   });
 
+  describe('Safe Function', () => {
+    it('should return the function if type is function', () => {
+      const func = () => {};
+      assert(t(func).safeFunction === func, 'Safe Function check didn\'t work :(');
+    });
+
+    it('should return () => {} if type is not function', () => {
+      let obj = null;
+      assert(typeof t(obj).safeFunction === 'function', 'Safe Function check didn\'t work :(');
+      obj = 'str';
+      assert(typeof t(obj).safeFunction === 'function', 'Safe Function check didn\'t work :(');
+      obj = {};
+      assert(typeof t(obj).safeFunction === 'function', 'Safe Function check didn\'t work :(');
+      obj = undefined;
+      assert(typeof t(obj).safeFunction === 'function', 'Safe Function check didn\'t work :(');
+      obj = [];
+      assert(typeof t(obj).safeFunction === 'function', 'Safe Function check didn\'t work :(');
+      assert(typeof t(obj).safeFunction === 'function', 'Safe Function check didn\'t work :(');
+    });
+  });
+
   describe('New Instance', () => {
     it('should return new instance for each input', () => {
       const stringType = t('hello');

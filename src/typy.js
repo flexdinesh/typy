@@ -120,6 +120,11 @@ class Typy {
     if (this.isBoolean) return this.input;
     return false;
   }
+
+  get safeFunction() {
+    if (this.isFunction) return this.input;
+    return /* istanbul ignore next */ () => {};
+  }
 }
 
 export default Typy;
