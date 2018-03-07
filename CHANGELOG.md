@@ -1,6 +1,10 @@
 # Changelog
 
-## To be released
+## To Be Released
+
+## 2.0.1 (7 Mar 2018)
+
+* Fix: Nested arrays with length > 10 will work like a charm now
 
 ## 2.0.0 (4 Mar 2018)
 
