@@ -31,17 +31,28 @@ describe('Nested Object/Keys Check', () => {
     let mockObj = {
       nestedArray: [
         { goodKey: 'hello one' },
-        { goodKey: 'hello two' }
+        { goodKey: 'hello two' },
+        { goodKey: 'hello three' },
+        { goodKey: 'hello four' },
+        { goodKey: 'hello five' },
+        { goodKey: 'hello six' },
+        { goodKey: 'hello seven' },
+        { goodKey: 'hello eight' },
+        { goodKey: 'hello nine' },
+        { goodKey: 'hello ten' },
+        { goodKey: 'hello eleven' },
       ]
     };
     assert(getNestedObject(mockObj, 'nestedArray[0].goodKey') === 'hello one');
     assert(getNestedObject(mockObj, 'nestedArray[1].goodKey') === 'hello two');
+    assert(getNestedObject(mockObj, 'nestedArray[10].goodKey') === 'hello eleven');
 
     mockObj = {
-      nestedArray: ['a', 'b']
+      nestedArray: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k']
     };
     assert(getNestedObject(mockObj, 'nestedArray[0]') === 'a');
     assert(getNestedObject(mockObj, 'nestedArray[1]') === 'b');
+    assert(getNestedObject(mockObj, 'nestedArray[10]') === 'k');
   });
 
   it('should return undefined when array element in path does not exist', () => {
