@@ -6,8 +6,16 @@ export const getNestedObject = (obj, dotSeparatedKeys) => {
     pathArr.forEach((key, idx, arr) => {
       if (typeof key === 'string' && key.includes('[')) {
         try {
-          arr.splice(idx + 1, 0, Number(/\[([^)]+)\]/.exec(key)[1]));
-          arr[idx] = key.slice(0, -3); // eslint-disable-line no-param-reassign
+          // extract the array index as string
+          const pos = /\[([^)]+)\]/.exec(key)[1];
+          // get the index string length (i.e. '21'.length === 2)
+          const posLen = pos.length;
+          arr.splice(idx + 1, 0, Number(pos));
+
+          // keep the key (array name) without the index comprehension:
+          // (i.e. key without [] (string of length 2)
+          // and the length of the index (posLen))
+          arr[idx] = key.slice(0, (-2 - posLen)); // eslint-disable-line no-param-reassign
         } catch (e) {
           // do nothing
         }
