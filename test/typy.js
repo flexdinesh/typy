@@ -326,4 +326,62 @@ describe('Typy', () => {
       });
     });
   });
+
+  describe('Check Object Schema', () => {
+    const batmanObject = {
+      name: 'Batman',
+      data: [
+        {
+          kills: 1001,
+          build: [
+            {
+              species: 'Human',
+              weight: 100
+            }
+          ]
+        }
+      ]
+    };
+
+    const superheroSchema = {
+      name: new Typy().String,
+      data: [
+        {
+          kills: new Typy().Number,
+          build: [
+            {
+              species: new Typy().String,
+              weight: new Typy().Number
+            }
+          ]
+        }
+      ]
+    };
+
+    it('should return true if object and schema are a valid match', () => {
+      assert.deepEqual(t(batmanObject, superheroSchema).input, batmanObject, 'Object-Schema check didn\'t work! :(');
+      assert.deepEqual(t(batmanObject, superheroSchema).schemaCheck, true, 'Object-Schema check didn\'t work! :(');
+      assert.deepEqual(t(batmanObject, superheroSchema).isValid, true, 'Object-Schema check didn\'t work! :(');
+    });
+
+    it('should not throw if object and schema are not a valid match', () => {
+      const weirdSuperheroSchema = {
+        name: new Typy().Number,
+        data: [
+          {
+            kills: new Typy().Number,
+            build: [
+              {
+                species: new Typy().String,
+                weight: new Typy().Number
+              }
+            ]
+          }
+        ]
+      };
+
+      assert.deepEqual(t(batmanObject, weirdSuperheroSchema).schemaCheck, false, 'Object-Schema check didn\'t work! :(');
+      assert.deepEqual(t(batmanObject, weirdSuperheroSchema).isValid, false, 'Object-Schema check didn\'t work! :(');
+    });
+  });
 });

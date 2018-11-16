@@ -39,3 +39,14 @@ console.log(`obj is an empty Object - ${t(obj).isEmptyObject}`); // true
 const arr = [];
 console.log(`arr is an Array - ${t(arr).isArray}`); // true
 console.log(`arr is an empty Array - ${t(arr).isEmptyArray}`); // true
+
+const { String } = require('../lib');
+
+const exampleObjSchema = {
+  goodKey: String,
+  nestedKey: {
+    nestedGoodKey: String
+  }
+};
+
+console.log(`exampleObj matches exampleObjSchema's schema - ${t(exampleObj, exampleObjSchema).isValid}`); // true

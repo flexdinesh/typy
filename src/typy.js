@@ -1,15 +1,43 @@
-import { getNestedObject } from './util';
+import { getNestedObject, convertSchemaAndGetMatch } from './util';
 
 class Typy {
+  constructor() {
+    this.Number = 1;
+    this.String = 'typy';
+    this.Boolean = true;
+    this.Null = null;
+    this.Undefined = undefined;
+    /* istanbul ignore next */
+    this.Function = () => {};
+  }
+
   t = (obj, nestedKeys) => {
     this.input = obj;
+    this.schemaCheck = null;
 
     if (nestedKeys) {
-      this.input = getNestedObject(this.input, nestedKeys);
+      if (typeof nestedKeys === 'string') {
+        this.input = getNestedObject(this.input, nestedKeys);
+      } else {
+        const checkSchema = convertSchemaAndGetMatch(this.input, nestedKeys);
+        if (checkSchema !== -1) {
+          this.schemaCheck = true;
+          this.input = checkSchema;
+        } else {
+          this.schemaCheck = false;
+          this.input = obj;
+        }
+      }
     }
 
     return this;
   };
+
+  get isValid() {
+    if (this.schemaCheck !== null && this.schemaCheck === true
+      && this.input !== null && this.input !== undefined) { return true; }
+    return false;
+  }
 
   get isDefined() {
     if (typeof this.input !== 'undefined') return true;
