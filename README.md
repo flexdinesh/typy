@@ -418,7 +418,6 @@ const superheroSchema = {
     }
   ]
 };
-
 const batmanObject = {
   name: 'Batman',
   age: 45,
@@ -430,14 +429,24 @@ const batmanObject = {
     }
   ]
 };
-
 const isSchemaValid = t(batmanObject, superheroSchema).isValid; // true
+
+const simpleSchema = {
+  name: Schema.String,
+  arr: Schema.Array
+};
+const obj = {
+  name: 'Jack',
+  arr: [1, 2, 3]
+};
+const isSchemaValid = t(obj, simpleSchema).isValid; // true
 ```
 
 The following **Schema types** are available in typy.
 
 - Number
 - String
+- Array
 - Boolean
 - Null
 - Undefined
