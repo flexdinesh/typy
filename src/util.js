@@ -71,9 +71,26 @@ const convertSchemaAndGetMatch = (obj, schemaObject) => {
   return -1;
 };
 
+const capitalize = string => string.charAt(0).toUpperCase() + string.slice(1);
+
+const propertyFormat = prop => `is${capitalize(prop)}`;
+
+const setCustomTypes = (typy, validators) => {
+  Object.keys(validators).forEach((property) => {
+    const newValidator = propertyFormat(property);
+    if (typeof typy[newValidator] === 'undefined') {
+      Object.defineProperty(typy, newValidator, { get: () => validators[property](typy.input) });
+    } else {
+      // eslint-disable-next-line no-console
+      console.error(`This property ${property} is already defined.`);
+    }
+  });
+};
+
 module.exports = {
   getNestedObject,
   buildSchema,
   getSchemaMatch,
-  convertSchemaAndGetMatch
+  convertSchemaAndGetMatch,
+  setCustomTypes
 };

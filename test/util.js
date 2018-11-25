@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { getNestedObject, convertSchemaAndGetMatch, buildSchema, getSchemaMatch } from '../src/util';
+import { getNestedObject, convertSchemaAndGetMatch, buildSchema, getSchemaMatch, setCustomTypes } from '../src/util';
 import Typy from '../src/typy';
 
 describe('Nested Object/Keys Check', () => {
@@ -255,5 +255,17 @@ describe('Objects and Schema check', () => {
     assert(convertSchemaAndGetMatch(obj, objSchema) !== -1);
     assert(typeof convertSchemaAndGetMatch(obj, objSchema) === 'object');
     assert(convertSchemaAndGetMatch(obj, weirdObjSchema) === -1);
+  });
+
+  it('should test if obj match custom validator', () => {
+    const car = { type: 'car', brand: 'renault' };
+    const typy = new Typy();
+
+    setCustomTypes(typy, {
+      car: carTesting => typeof carTesting.type !== 'undefined' && typeof carTesting.brand !== 'undefined',
+      email: emailStr => emailStr.indexOf('@') !== -1
+    });
+    assert(typy.t(car).isCar === true, 'Defined check didn\'t work :(');
+    assert(typy.t('str').isEmail === false);
   });
 });

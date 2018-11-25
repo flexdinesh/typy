@@ -1,6 +1,9 @@
 import Typy from './typy';
+import { setCustomTypes } from './util';
 
-const t = (input, objectPath) => new Typy().t(input, objectPath);
+const commonTypy = new Typy();
+const t = (input, objectPath) => commonTypy.t(input, objectPath);
+const setCustom = validator => setCustomTypes(commonTypy, validator);
 const { Number } = new Typy().Number;
 const { String } = new Typy().String;
 const { Boolean } = new Typy().Boolean;
@@ -15,5 +18,6 @@ module.exports = {
   Boolean,
   Function,
   Null,
-  Undefined
+  Undefined,
+  setCustomTypes: setCustom
 };

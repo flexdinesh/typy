@@ -153,6 +153,10 @@ class Typy {
     if (this.isFunction) return this.input;
     return /* istanbul ignore next */ () => {};
   }
+
+  custom(checker) {
+    return checker(this.input);
+  }
 }
 
 export default Typy;

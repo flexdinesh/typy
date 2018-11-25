@@ -1,6 +1,7 @@
 declare module "typy" {
 
 	export default function typy (input: any, objectPath?: string): Typy
+	export function setCustomTypes(typy: Typy, validators: any): void
 
 	class Typy {
 
