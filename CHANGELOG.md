@@ -2,17 +2,17 @@
 
 ## To Be Released
 
-## 3.0.0 (25 Nov 2018)
+### 3.0.0 (Undecided)
 
 * Schema Validation
 
 ## Released
 
-## 2.0.1 (7 Mar 2018)
+### 2.0.1 (7 Mar 2018)
 
 * Fix: Nested arrays with length > 10 will work like a charm now
 
-## 2.0.0 (4 Mar 2018)
+### 2.0.0 (4 Mar 2018)
 
 * Package minified with >60% compression
 * New getters added
@@ -20,29 +20,29 @@
   * `safeBoolean` returns the value if input is Boolean or returns false
   * `safeFunction` returns the function if input is function or returns an empty function () => {}
 
-## 1.4.3 (6 Feb 2018)
+### 1.4.3 (6 Feb 2018)
 
 * Added support for use in TypeScript codebases
 
-## 1.4.0 (6 Feb 2018)
+### 1.4.0 (6 Feb 2018)
 
 * Two new getters are available in Typy
   * `safeObject` returns the value from a nested object path without throwing
   * `safeString` returns the value if input is string or returns empty string
 
-## 1.3.0 (5 Feb 2018)
+### 1.3.0 (5 Feb 2018)
 
 * Performance optimizations
 
-## 1.2.0 (5 Feb 2018)
+### 1.2.0 (5 Feb 2018)
 
 * Typy can now store results to a variable and check the type later
 
-## 1.1.0 (4 Feb 2018)
+### 1.1.0 (4 Feb 2018)
 
 * Fixed a bug for Number type validation
 
-## 1.0.0 (4 Feb 2018)
+### 1.0.0 (4 Feb 2018)
 
 * Typy is released to the world =)
 * Following APIs are included in the first release
