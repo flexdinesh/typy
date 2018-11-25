@@ -1,9 +1,7 @@
 import { assert } from 'chai';
-import Typy from '../src/typy';
+import t, { Schema } from '../src/index';
 
 describe('Typy', () => {
-  const t = (input, objectPath) => new Typy().t(input, objectPath);
-
   describe('Defined/Undefined', () => {
     const obj = {
       goodKey: 'hooray'
@@ -344,14 +342,14 @@ describe('Typy', () => {
     };
 
     const superheroSchema = {
-      name: new Typy().String,
+      name: Schema.String,
       data: [
         {
-          kills: new Typy().Number,
+          kills: Schema.Number,
           build: [
             {
-              species: new Typy().String,
-              weight: new Typy().Number
+              species: Schema.String,
+              weight: Schema.Number
             }
           ]
         }
@@ -366,14 +364,14 @@ describe('Typy', () => {
 
     it('should not throw if object and schema are not a valid match', () => {
       const weirdSuperheroSchema = {
-        name: new Typy().Number,
+        name: Schema.Number,
         data: [
           {
-            kills: new Typy().Number,
+            kills: Schema.Number,
             build: [
               {
-                species: new Typy().String,
-                weight: new Typy().Number
+                species: Schema.String,
+                weight: Schema.Number
               }
             ]
           }

@@ -1,25 +1,25 @@
 import { getNestedObject, convertSchemaAndGetMatch } from './util';
 
 class Typy {
-  constructor() {
-    this.Number = 1;
-    this.String = 'typy';
-    this.Boolean = true;
-    this.Null = null;
-    this.Undefined = undefined;
+  static Schema = {
+    Number: 1,
+    String: 'typy',
+    Boolean: true,
+    Null: null,
+    Undefined: undefined,
     /* istanbul ignore next */
-    this.Function = () => {};
+    Function: () => {}
   }
 
-  t = (obj, nestedKeys) => {
+  t = (obj, options) => {
     this.input = obj;
     this.schemaCheck = null;
 
-    if (nestedKeys) {
-      if (typeof nestedKeys === 'string') {
-        this.input = getNestedObject(this.input, nestedKeys);
+    if (options) {
+      if (typeof options === 'string') {
+        this.input = getNestedObject(this.input, options);
       } else {
-        const checkSchema = convertSchemaAndGetMatch(this.input, nestedKeys);
+        const checkSchema = convertSchemaAndGetMatch(this.input, options);
         if (checkSchema !== -1) {
           this.schemaCheck = true;
           this.input = checkSchema;

@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 import { getNestedObject, convertSchemaAndGetMatch, buildSchema, getSchemaMatch } from '../src/util';
-import Typy from '../src/typy';
+import { Schema } from '../src/index';
 
 describe('Nested Object/Keys Check', () => {
   it('should return nested object if exists', () => {
@@ -82,7 +82,7 @@ describe('Nested Object/Keys Check', () => {
 
 describe('Objects and Schema check', () => {
   it('should return only typeOf for primitive types', () => {
-    const objSchema = new Typy().String;
+    const objSchema = Schema.String;
 
     const mockSchemaObj = 'typy';
 
@@ -91,14 +91,14 @@ describe('Objects and Schema check', () => {
 
   it('should convert complex schema to object', () => {
     const objSchema = {
-      name: new Typy().String,
+      name: Schema.String,
       data: [
         {
-          unitCount: new Typy().Number,
+          unitCount: Schema.Number,
           units: [
             {
-              label: new Typy().String,
-              weight: new Typy().Number,
+              label: Schema.String,
+              weight: Schema.Number,
             }
           ]
         }
@@ -129,8 +129,8 @@ describe('Objects and Schema check', () => {
 
   it('should convert schema with function type to object with function', () => {
     const objSchema = {
-      getName: new Typy().Function,
-      getRandomString: new Typy().Function
+      getName: Schema.Function,
+      getRandomString: Schema.Function
     };
 
     const mockSchemaObj = {
@@ -223,14 +223,14 @@ describe('Objects and Schema check', () => {
     };
 
     const objSchema = {
-      name: new Typy().String,
+      name: Schema.String,
       data: [
         {
-          unitCount: new Typy().Number,
+          unitCount: Schema.Number,
           units: [
             {
-              label: new Typy().String,
-              weight: new Typy().Number,
+              label: Schema.String,
+              weight: Schema.Number,
             }
           ]
         }
@@ -238,14 +238,14 @@ describe('Objects and Schema check', () => {
     };
 
     const weirdObjSchema = {
-      name: new Typy().Number,
+      name: Schema.Number,
       data: [
         {
-          unitCount: new Typy().Number,
+          unitCount: Schema.Number,
           units: [
             {
-              label: new Typy().String,
-              weight: new Typy().Number,
+              label: Schema.String,
+              weight: Schema.Number,
             }
           ]
         }

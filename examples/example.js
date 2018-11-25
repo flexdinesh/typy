@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
-const t = require('../lib');
+const t = require('../lib').default;
+const { Schema } = require('../lib');
 
+// Undefined Checks
 const exampleObj = {
   goodKey: 'I exist :)',
   nestedKey: {
@@ -13,9 +15,10 @@ console.log(`exampleObj.goodKey is defined - ${t(exampleObj, 'goodKey').isDefine
 console.log(`exampleObj.badKey is defined - ${t(exampleObj, 'badKey').isDefined}`); // false
 console.log(`exampleObj.badKey is undefined - ${t(exampleObj, 'badKey').isUndefined}`); // false
 console.log(`exampleObj.nestedKey.nestedGoodKey is defined - ${t(exampleObj, 'nestedKey.nestedGoodKey').isDefined}`); // true
-console.log(`exampleObj.nestedKey.nestedGoodKey is undefined - ${t(exampleObj, 'badKey.nestedGoodKey').isDefined}`); // false
-console.log(`exampleObj.nestedKey.nestedGoodKey is undefined - ${t(exampleObj, 'badKey.nestedGoodKey').isUndefined}`); // true
+console.log(`exampleObj.badKey.nestedGoodKey is defined - ${t(exampleObj, 'badKey.nestedGoodKey').isDefined}`); // false
+console.log(`exampleObj.badKey.nestedGoodKey is undefined - ${t(exampleObj, 'badKey.nestedGoodKey').isUndefined}`); // true
 
+// Type Checks
 const nullObj = null;
 console.log(`nullObj is null - ${t(nullObj).isNull}`); // true
 
@@ -40,12 +43,12 @@ const arr = [];
 console.log(`arr is an Array - ${t(arr).isArray}`); // true
 console.log(`arr is an empty Array - ${t(arr).isEmptyArray}`); // true
 
-const { String } = require('../lib');
+// Schema Checks
 
 const exampleObjSchema = {
-  goodKey: String,
+  goodKey: Schema.String,
   nestedKey: {
-    nestedGoodKey: String
+    nestedGoodKey: Schema.String
   }
 };
 

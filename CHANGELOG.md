@@ -2,6 +2,12 @@
 
 ## To Be Released
 
+## 3.0.0 (25 Nov 2018)
+
+* Schema Validation
+
+## Released
+
 ## 2.0.1 (7 Mar 2018)
 
 * Fix: Nested arrays with length > 10 will work like a charm now
