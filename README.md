@@ -94,6 +94,7 @@ const myObj = t(deepObj, 'badKey.goodKey').safeObject; // => undefined
   - [safeNumber](#safenumber)
   - [safeBoolean](#safeboolean)
   - [safeFunction](#safefunction)
+  - [isValid (Schema Validation)](#isvalid-schema-validation)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
