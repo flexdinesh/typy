@@ -382,4 +382,57 @@ describe('Typy', () => {
       assert.deepEqual(t(batmanObject, weirdSuperheroSchema).isValid, false, 'Object-Schema check didn\'t work! :(');
     });
   });
+
+  it('Monkey Test - Schema Validation', () => {
+    let expectedSchema = {
+      name: Schema.String,
+      arr: Schema.Array
+    };
+
+    let obj = {
+      name: 'Jack',
+      arr: [1, 2, 3]
+    };
+    assert.deepEqual(t(obj, expectedSchema).isValid, true);
+
+    obj = {
+      name: 'Jack',
+      arr: ['1', 2, 3]
+    };
+    assert.deepEqual(t(obj, expectedSchema).isValid, true);
+
+    obj = {
+      name: 'Jack',
+      arr: [{
+        key: 'val'
+      }]
+    };
+    assert.deepEqual(t(obj, expectedSchema).isValid, true);
+
+    obj = {
+      name: 22,
+      arr: ['1', 2, 3]
+    };
+    assert.deepEqual(t(obj, expectedSchema).isValid, false);
+
+    expectedSchema = {
+      name: Schema.String,
+      arr: [{
+        key: Schema.String
+      }]
+    };
+    obj = {
+      name: 'Jack',
+      arr: [{
+        key: 'val'
+      }]
+    };
+    assert.deepEqual(t(obj, expectedSchema).isValid, true);
+
+    obj = {
+      name: 'Jack',
+      arr: [1, 2, 4]
+    };
+    assert.deepEqual(t(obj, expectedSchema).isValid, false);
+  });
 });

@@ -7,6 +7,7 @@ class Typy {
     Boolean: true,
     Null: null,
     Undefined: undefined,
+    Array: [],
     /* istanbul ignore next */
     Function: () => {}
   }

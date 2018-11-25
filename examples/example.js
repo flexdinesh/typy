@@ -44,12 +44,16 @@ console.log(`arr is an Array - ${t(arr).isArray}`); // true
 console.log(`arr is an empty Array - ${t(arr).isEmptyArray}`); // true
 
 // Schema Checks
-
-const exampleObjSchema = {
+const validSchema = {
   goodKey: Schema.String,
   nestedKey: {
     nestedGoodKey: Schema.String
   }
 };
+console.log(`exampleObj matches validSchema - ${t(exampleObj, validSchema).isValid}`); // true
 
-console.log(`exampleObj matches exampleObjSchema's schema - ${t(exampleObj, exampleObjSchema).isValid}`); // true
+const inValidSchema = {
+  goodKey: Schema.String,
+  nestedKey: Schema.Array
+};
+console.log(`exampleObj does not match inValidSchema - ${t(exampleObj, inValidSchema).isValid}`); // false

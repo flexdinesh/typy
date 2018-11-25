@@ -28,13 +28,13 @@ const getNestedObject = (obj, dotSeparatedKeys) => {
 
 // istanbul ignores are used in 2 places which involve typeOf - Open issue at istanbul
 // https://github.com/gotwarlost/istanbul/issues/582
-
 const buildSchema = (schemaObject) => {
   if (Object.prototype.toString.call(schemaObject) === '[object Array]') {
     schemaObject.forEach(subObj => buildSchema(subObj));
   } else if (Object.prototype.toString.call(schemaObject) === '[object Object]') {
     Object.keys(schemaObject).forEach(subObj => buildSchema(schemaObject[subObj]));
-  } else { // istanbul ignore next
+  } else {
+    // istanbul ignore next
     return typeof schemaObject;
   }
   return schemaObject;
@@ -43,12 +43,16 @@ const buildSchema = (schemaObject) => {
 const getSchemaMatch = (obj, objFromSchema) => {
   let result = false;
   if (Object.prototype.toString.call(obj) === '[object Array]') {
-    for (let i = 0; i < obj.length; i += 1) {
-      if (!getSchemaMatch(obj[i], objFromSchema[i])) {
-        result = false;
-        break;
+    if (objFromSchema.length) {
+      for (let i = 0; i < obj.length; i += 1) {
+        if (!getSchemaMatch(obj[i], objFromSchema[i])) {
+          result = false;
+          break;
+        }
+        result = true;
       }
-      result = true;
+    } else {
+      return true;
     }
   } else if (Object.prototype.toString.call(obj) === '[object Object]') {
     for (const key in obj) { // eslint-disable-line guard-for-in, no-restricted-syntax
