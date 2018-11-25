@@ -10,15 +10,14 @@ Type checking library for JavaScript with a _'sweeter'_ syntax.
 
 `t('foo').isString // => true`
 
-
 ## Why? [![start with why](https://img.shields.io/badge/start%20with-why%3F-brightgreen.svg?style=flat)](http://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action)
 
 There are a hundred other type checking libraries out there. But **Typy** is built with three core behavioral aspects.
 
 1. No surprises. **Typy** will never throw, no matter what the input is.
 2. Object check will only look for **{ }** rather than JavaScript's native behavior of considering everything as objects such as arrays, functions, null, etc.
-3. _Thought Driven Development_. Code should exactly mimic your thoughts on the logic rather than writing extra code just because that's how JavaScript works.
-`t(obj).isDefined // => true`
+3. _Thought Driven Development_. Code should exactly mimic your thoughts on the logic rather than writing extra code just because that's how JavaScript works. `t(obj).isDefined // => true`
+4. Object schema validation 🔥
 
 ## Install
 
@@ -30,7 +29,8 @@ $ npm install --save typy
 
 ```js
 import t from 'typy'; // ES6 style import
-// var t = require('typy'); // ES5 style import
+// var t = require('typy'); // CommonJS style import (version < 3)
+// var t = require('typy').default; // CommonJS style import (version >= 3)
 
 if (t('hello').isString) { // => true
   console.log('Input is a String!')
@@ -97,7 +97,6 @@ const myObj = t(deepObj, 'badKey.goodKey').safeObject; // => undefined
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-
 #### t(input, optionalObjectPath)
 
 Pass in your input to the t() method and **Typy** will take care of everything
@@ -139,7 +138,6 @@ t(obj.goodKey).isDefined // => true
 t(obj.badKey).isDefined // => false
 ```
 
-
 #### isUndefined
 
 Returns _true_ if the input is undefined.
@@ -153,7 +151,6 @@ t(obj.goodKey).isUndefined // => false
 t(obj.badKey).isUndefined // => true
 ```
 
-
 #### isNull
 
 Returns _true_ if the input is null.
@@ -165,7 +162,6 @@ const obj = {
 
 t(obj.foo).isNull // => true
 ```
-
 
 #### isNullOrUndefined
 
@@ -180,7 +176,6 @@ t(obj.foo).isNullOrUndefined // => true
 t(obj.bar).isNullOrUndefined // => true
 ```
 
-
 #### isBoolean
 
 Returns _true_ if the input is either `true` or `false`.
@@ -189,7 +184,6 @@ Returns _true_ if the input is either `true` or `false`.
 t(true).isBoolean // => true
 t(false).isBoolean // => true
 ```
-
 
 #### isTrue
 
@@ -200,7 +194,6 @@ t(true).isTrue // => true
 t(false).isTrue // => false
 ```
 
-
 #### isFalse
 
 Returns _true_ if the input is Boolean `false`.
@@ -209,7 +202,6 @@ Returns _true_ if the input is Boolean `false`.
 t(true).isFalse // => false
 t(false).isFalse // => true
 ```
-
 
 #### isTruthy
 
@@ -223,7 +215,6 @@ t({}).isTruthy // => true
 t(22).isTruthy // => true
 t([1, 'two']).isTruthy // => true
 ```
-
 
 #### isFalsy
 
@@ -254,7 +245,6 @@ t({}).isObject // => true
 
 _Note: Only { } objects will return this as true as opposed to javascript definition of Object which includes Arrays, Functions, anything and everything related to prototype. This is an intentional behavior as we don't want arrays to return true for isObject._
 
-
 #### isEmptyObject
 
 Returns _true_ if the input is an empty object, _aka_ object without any keys.
@@ -270,7 +260,6 @@ t({}).isEmptyObject // => true
 t(obj).isEmptyObject // => false
 ```
 
-
 #### isString
 
 Returns _true_ if the input is a string.
@@ -285,7 +274,6 @@ t(22).isString // => false
 t(null).isString // => false
 ```
 
-
 #### isEmptyString
 
 Returns _true_ if the input is an empty string.
@@ -294,7 +282,6 @@ Returns _true_ if the input is an empty string.
 t('').isEmptyString // => true
 t('typy is so great').isEmptyString // => false
 ```
-
 
 #### isNumber
 
@@ -306,7 +293,6 @@ t('i am a string').isNumber // => false
 t({}).isNumber // => false
 ```
 
-
 #### isArray
 
 Returns _true_ if the input is an array.
@@ -317,7 +303,6 @@ t([1, 2, 'typy']).isArray // => true
 t({}).isArray // => false
 ```
 
-
 #### isEmptyArray
 
 Returns _true_ if the input is an empty array.
@@ -326,7 +311,6 @@ Returns _true_ if the input is an empty array.
 t([]).isEmptyArray // => true
 t([1, 2, 'typy']).isEmptyArray // => false
 ```
-
 
 #### isFunction
 
@@ -337,7 +321,6 @@ const func = () => {};
 t(func).isFunction // => true
 t({}).isFunction // => false
 ```
-
 
 #### safeObject
 
@@ -371,7 +354,6 @@ const anotherDeepObj = {
 const myObj = t(anotherDeepObj, 'nestedArray[1].superNestedKey.superGoodKey').safeObject; // => 'typy is great :)'
 ```
 
-
 #### safeString
 
 Returns the string value if the input type is string or will return an empty string `''`.
@@ -383,7 +365,6 @@ const str = t(undefined).safeString; // => ''
 const str = t(22).safeString; // => ''
 ```
 
-
 #### safeNumber
 
 Returns the number if the input type is Number or will return `0`.
@@ -394,7 +375,6 @@ const num = t('22').safeNumber; // => 0
 const num = t(undefined).safeNumber; // => 0
 const num = t(null).safeNumber; // => 0
 ```
-
 
 #### safeBoolean
 
@@ -408,7 +388,6 @@ const bool = t(undefined).safeBoolean; // => false
 const bool = t(22).safeBoolean; // => false
 ```
 
-
 #### safeFunction
 
 Returns the function if the input type is function or will return an empty function `() => {}`.
@@ -421,6 +400,47 @@ const func = t(undefined).safeFunction; // => empty function () => {}
 const func = t(null).safeFunction; // => empty function () => {}
 ```
 
+#### isValid (Schema Validation)
+
+`isValid` is used to check and validate the schema of an object. It returns `true` if the schema of the object matches the schema passed or `false` if the schema doesn't match.
+
+```js
+import t, { Schema } from 'typy';
+
+const superheroSchema = {
+  name: Schema.String,
+  age: Schema.Number,
+  appearances: [
+    {
+      title: Schema.String,
+      alias: Schema.String,
+    }
+  ]
+};
+
+const batmanObject = {
+  name: 'Batman',
+  age: 45,
+  isAlive: true,
+  appearances: [
+    {
+      title: 'The Dark Knight',
+      alias: 'Bruce',
+    }
+  ]
+};
+
+const isSchemaValid = t(batmanObject, superheroSchema).isValid; // true
+```
+
+The following **Schema types** are available in typy.
+
+- Number
+- String
+- Boolean
+- Null
+- Undefined
+- Function
 
 ## License
 
