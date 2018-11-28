@@ -65,6 +65,27 @@ const myObj = t(deepObj, 'nestedKey.goodKey').safeObject; // => 'hello'
 // Typy won't throw undefined error for badKey.goodKey
 // instead the return value will be undefined
 const myObj = t(deepObj, 'badKey.goodKey').safeObject; // => undefined
+
+// Examples for nested object schema check
+import String from 'typy';
+
+const batmanObject = {
+  name: 'Batman',
+  data: {
+    gender: 'Male',
+    power: 'Genius, Rich'
+  }
+};
+
+const superHeroSchema = {
+  name: String,
+  data: {
+    gender: String,
+    power: String
+  }
+};
+
+t(batmanObject, superHeroSchema).isValid // => true
 ```
 
 ## API
@@ -89,6 +110,7 @@ const myObj = t(deepObj, 'badKey.goodKey').safeObject; // => undefined
   - [isArray](#isarray)
   - [isEmptyArray](#isemptyarray)
   - [isFunction](#isfunction)
+  - [isValid](#isvalid)
   - [safeObject](#safeobject)
   - [safeString](#safestring)
   - [safeNumber](#safenumber)
@@ -120,10 +142,27 @@ const obj = {
 // You have to pass the path as string in the second param
 t(obj, 'goodKey.nestedKey')
 t(obj, 'badKey.nestedKey')
-// this is because if you pass t(obj.badKey.nestedKey),
-// you will get undefined exception
-// because that is how javascript is designed
-// to overcome that we need to pass the sub key as a string to Typy
+
+// To perform a nested object schema check
+// You have to pass the schema object.
+
+import Number from 'typy';
+
+const amazingSchema = {
+         name: Number,
+         data: [
+           {
+             kills: Number,
+             build: [
+               {
+                 weight: Number
+               }
+             ]
+           }
+         ]
+       };
+
+t(obj, amazingSchema)
 ```
 
 #### isDefined
@@ -337,6 +376,51 @@ const func = () => {};
 t(func).isFunction // => true
 t({}).isFunction // => false
 ```
+
+#### isValid
+
+Returns _true_ if the object and schema provided match.
+
+```js
+const { String, Number } = require('../lib');
+
+const batmanObject = {
+  name: 'Batman',
+  data: {
+    gender: 'Male',
+    age: 30,
+    power: 'Genius, Rich'
+  }
+};
+
+const superHeroSchema = {
+  name: String,
+  data: {
+    gender: String,
+    age: Number,
+    power: String
+  }
+};
+
+const weirdSuperheroSchema = {
+  name: Number,
+  data: [
+    {
+      kills: Number,
+      build: [
+        {
+          species: String,
+          weight: Number
+        }
+      ]
+    }
+  ]
+};
+
+t(batmanObject, superHeroSchema).isValid // => true
+t(batmanObject, weirdSuperheroSchema).isValid // => false
+```
+
 
 
 #### safeObject
