@@ -2,6 +2,12 @@
 
 ## To Be Released
 
+### version (undecided)
+
+* what's next
+
+## Released
+
 ### 3.0.0 (9 Dec 2018)
 
 * Schema Validation
@@ -24,8 +30,6 @@ const { t } = require('typy');
 ```
 
 _Note: Breaking changes apply only for node.js CommonJS style require statements. This version affect ES6 style imports._
-
-## Released
 
 ### 2.0.1 (7 Mar 2018)
 
