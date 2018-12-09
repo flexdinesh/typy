@@ -10,6 +10,25 @@ Type checking library for JavaScript with a _'sweeter'_ syntax.
 
 `t('foo').isString // => true`
 
+## New in version 3 🔥
+
+- [Schema Validation](#isvalid-schema-validation)
+- [Custom Types](#addcustomtypes-custom-types)
+
+Version **3.0.0** introduces **BREAKING** changes (for node.js CommonJS style imports only).
+
+```js
+// Before v3.0.0, `t` function was imported as
+const t = require('typy');
+
+//From v3.0.0, `t` function should be imported as
+const { t } = require('typy');
+
+// Note: This version does not affect previous ES6 style imports._
+import t, { Schema, addCustomTypes } from 'typy'; // this will still work
+import { t, Schema, addCustomTypes } from 'typy'; // this will also work
+```
+
 ## Why? [![start with why](https://img.shields.io/badge/start%20with-why%3F-brightgreen.svg?style=flat)](http://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action)
 
 There are a hundred other type checking libraries out there. But **Typy** is built with three core behavioral aspects.
@@ -17,7 +36,7 @@ There are a hundred other type checking libraries out there. But **Typy** is bui
 1. No surprises. **Typy** will never throw, no matter what the input is.
 2. Object check will only look for **{ }** rather than JavaScript's native behavior of considering everything as objects such as arrays, functions, null, etc.
 3. _Thought Driven Development_. Code should exactly mimic your thoughts on the logic rather than writing extra code just because that's how JavaScript works. `t(obj).isDefined // => true`
-4. Object schema validation 🔥
+4. Custom type validation and schema validation.
 
 ## Install
 
@@ -95,6 +114,7 @@ const myObj = t(deepObj, 'badKey.goodKey').safeObject; // => undefined
   - [safeBoolean](#safeboolean)
   - [safeFunction](#safefunction)
   - [isValid (Schema Validation)](#isvalid-schema-validation)
+  - [addCustomTypes (Custom Types)](#addcustomtypes-custom-types)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -451,6 +471,37 @@ The following **Schema types** are available in typy.
 - Null
 - Undefined
 - Function
+
+#### addCustomTypes (Custom Types)
+
+`addCustomTypes` is used to pass custom validators to **Typy**. It can be used to validate any ipnut for custom types, like this `t(input).isMyCustomType`.
+
+You will have to add custom types only once in the project (preferabby in entry file. ex. `index.js`)
+
+Entry file (Ex. `index.js`)
+
+```js
+import t, { addCustomTypes } from 'typy';
+
+addCustomTypes({
+  isPhone: (input) => (t(input).isNumber && /^\d{10}$/g.test(String(input))), // has 10 digits
+  isAddress: (input) => (t(input).isString && input.toUpperCase().includes('STREET')) // includes 'street' in input
+});
+
+```
+
+Anywhere in the project
+
+```js
+import t from 'typy';
+
+const isThePhoneNumberValid = t(9892389239).isPhone; // => true
+const isThePhoneNumberValid = t('abcdefg').isPhone; // => false
+
+const isTheAddressValid = t('10 Downing Street').isAddress; // => true
+const isTheAddressValid = t('I like cats 🐈').isAddress; // => false
+
+```
 
 ## License
 
