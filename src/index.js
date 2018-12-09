@@ -21,4 +21,4 @@ const addCustomTypes = (validators) => {
 };
 
 export default t;
-export { Schema, addCustomTypes };
+export { t, Schema, addCustomTypes };

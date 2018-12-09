@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
-const t = require('../lib').default;
-const { Schema } = require('../lib');
+const { t, Schema, addCustomTypes } = require('../lib');
 
 // Undefined Checks
 const exampleObj = {
