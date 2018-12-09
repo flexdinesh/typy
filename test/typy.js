@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import t, { Schema } from '../src/index';
+import t, { Schema, addCustomTypes } from '../src/index'; // eslint-disable-line import/no-named-as-default
 
 describe('Typy', () => {
   describe('Defined/Undefined', () => {
@@ -434,5 +434,19 @@ describe('Typy', () => {
       arr: [1, 2, 4]
     };
     assert.deepEqual(t(obj, expectedSchema).isValid, false);
+  });
+
+  describe('Custom Type Check', () => {
+    const whenFailedShowThisMessageInConsole = 'Custom Type check didn\'t work! :(';
+    it('should validate custom type checks', () => {
+      addCustomTypes({
+        isPhone: input => (t(input).isNumber && /^\d{10}$/g.test(String(input))),
+        isAddress: input => (t(input).isString && input.toUpperCase().includes('DOWNING STREET'))
+      });
+      assert(t(9892389239).isPhone === true, whenFailedShowThisMessageInConsole);
+      assert(t(98923892390).isPhone === false, whenFailedShowThisMessageInConsole);
+      assert(t('10 Downing Street haha').isAddress === true, whenFailedShowThisMessageInConsole);
+      assert(t('10 Street haha').isAddress === false, whenFailedShowThisMessageInConsole);
+    });
   });
 });

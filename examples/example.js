@@ -57,3 +57,19 @@ const inValidSchema = {
   nestedKey: Schema.Array
 };
 console.log(`exampleObj does not match inValidSchema - ${t(exampleObj, inValidSchema).isValid}`); // false
+
+// Custom Types
+addCustomTypes({
+  isPhone: input => (t(input).isNumber && /^\d{10}$/g.test(String(input))), // has 10 digits
+  isAddress: input => (t(input).isString && input.toUpperCase().includes('STREET')) // includes 'street' in address
+});
+
+const validPhoneNum = 9892389239;
+const invalidPhoneNum = 98923892390;
+console.log(`9892389239 is a valid phone num - ${t(validPhoneNum).isPhone}`); // true
+console.log(`98923892390 is a valid phone num - ${t(invalidPhoneNum).isPhone}`); // false
+
+const validAddress = '10 Downing Street';
+const invalidAddress = 'bwahahaha';
+console.log(`"10 Downing Street" is a valid address - ${t(validAddress).isAddress}`); // true
+console.log(`"bwahahaha" is a valid address - ${t(invalidAddress).isAddress}`); // false
