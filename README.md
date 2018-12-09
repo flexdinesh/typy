@@ -503,6 +503,13 @@ const isTheAddressValid = t('I like cats 🐈').isAddress; // => false
 
 ```
 
+## Contributors
+
+Thanks goes to these amazing people 🎉
+
+| [<img src="https://avatars3.githubusercontent.com/u/5777880?v=4" width="100px;"/><br /><sub><b>Dinesh Pandiyan</b></sub>](https://github.com/flexdinesh)<br /> | [<img src="https://avatars0.githubusercontent.com/u/6686039?v=4" width="100px;"/><br /><sub><b>Ozair Patel</b></sub>](https://github.com/OzairP)<br /> | [<img src="https://avatars0.githubusercontent.com/u/23170622?v=4" width="100px;"/><br /><sub><b>Aneerudh</b></sub>](https://github.com/Aneedroid)<br /> | [<img src="https://avatars1.githubusercontent.com/u/13482258?v=4" width="100px;"/><br /><sub><b>Ruphaa Ganesh</b></sub>](https://github.com/ruphaa)<br /> | [<img src="https://avatars0.githubusercontent.com/u/4320434?v=4" width="100px;"/><br /><sub><b>Quentin Jadeau</b></sub>](https://github.com/jadok)<br />
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+
 ## License
 
 MIT © Dinesh Pandiyan
