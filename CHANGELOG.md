@@ -2,9 +2,28 @@
 
 ## To Be Released
 
-### 3.0.0 (Undecided)
+### 3.0.0 (9 Dec 2018)
 
 * Schema Validation
+  * **Typy** can validate if an object matches a specific type schema
+* Custom Types
+  * Custom type validators can be added to **Typy**
+
+This version introduces **BREAKING** changes (for node.js imports only). Make sure you update your code accordingly.
+
+Before v3.0.0, `t` function was imported as
+
+```js
+const t = require('typy');
+```
+
+From v3.0.0, `t` function should be imported as
+
+```js
+const { t } = require('typy');
+```
+
+_Note: Breaking changes apply only for node.js CommonJS style require statements. This version affect ES6 style imports._
 
 ## Released
 
