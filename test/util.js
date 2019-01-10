@@ -56,6 +56,35 @@ describe('Nested Object/Keys Check', () => {
     assert(getNestedObject(mockObj, 'nestedArray[10]') === 'k');
   });
 
+  it('should return deeply nested object when there are multiple array elements in path', () => {
+    const mockObj = {
+      '@id': 'weird',
+      firstArray: [
+        {
+          '@id': 'identifier',
+          goodKey: 'hello one',
+          secondArray: [
+            {
+              '@id': 'unique',
+              goodKey: 'deep hello'
+            }
+          ],
+          stackedArray: [['a1', 'a2'], ['b1', 'b2', 'b3'], ['c']]
+        }
+      ]
+    };
+
+    assert(getNestedObject(mockObj, 'firstArray[0].secondArray[0].goodKey') === 'deep hello');
+    assert(getNestedObject(mockObj, 'firstArray[0].secondArray[0][@id]') === 'unique');
+
+    assert(getNestedObject(mockObj, 'firstArray[0].goodKey') === 'hello one');
+    assert(getNestedObject(mockObj, '["@id"]') === 'weird');
+    assert(getNestedObject(mockObj, 'firstArray[0]["@id"]') === 'identifier');
+    assert(getNestedObject(mockObj, 'firstArray[0].secondArray[0].goodKey') === 'deep hello');
+    assert(getNestedObject(mockObj, 'firstArray[0].secondArray[0]["@id"]') === 'unique');
+    assert(getNestedObject(mockObj, 'firstArray[0].stackedArray[0][1]') === 'a2');
+  });
+
   it('should return undefined when array element in path does not exist', () => {
     const mockObj = {
       nestedArray: [
