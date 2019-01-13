@@ -6,5 +6,8 @@
   },
   "rules": {
     "comma-dangle": ["error", "only-multiline"]
+  },
+  "globals": {
+    "expect": false
   }
 }
