@@ -1,13 +1,11 @@
 {
   "parser": "babel-eslint",
   "extends": "airbnb",
-  "env": {
-    "mocha": true
-  },
   "rules": {
     "comma-dangle": ["error", "only-multiline"]
   },
-  "globals": {
-    "expect": false
+  "plugins": ["jest"],
+  "env": {
+    "jest/globals": true
   }
 }
