@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf lib",
     "test": "npm run lint && npm run test:only",
-    "test:only": "jest --verbose=false test",
+    "test:only": "jest --verbose=true test",
     "test:prod": "cross-env BABEL_ENV=production npm run test",
     "test:watch": "npm run lint && jest --verbose=false --watch test",
     "test:examples": "node examples/",
