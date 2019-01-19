@@ -3,8 +3,8 @@ node_js:
   - '8'
   - '6'
 script:
-  - npm run test
-  - npm run build
+  - yarn test
+  - yarn build
 branches:
   only:
     - master
