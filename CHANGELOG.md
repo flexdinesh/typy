@@ -8,6 +8,12 @@
 
 ## Released
 
+### 3.0.1 (19 Jan 2019)
+
+* Added support for bracket syntax while accessing nested objects
+
+`t('someObject.firstArray[0].secondArray[0].complexObject["@id"]').isDefined` is now possible.
+
 ### 3.0.0 (9 Dec 2018)
 
 * Schema Validation
