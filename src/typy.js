@@ -135,6 +135,11 @@ class Typy {
     return this.input;
   }
 
+  get safeObjectOrEmpty() {
+    if (this.input) return this.input;
+    return {};
+  }
+
   get safeString() {
     if (this.isString) return this.input;
     return '';

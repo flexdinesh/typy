@@ -109,6 +109,7 @@ const myObj = t(deepObj, 'badKey.goodKey').safeObject; // => undefined
   - [isEmptyArray](#isemptyarray)
   - [isFunction](#isfunction)
   - [safeObject](#safeobject)
+  - [safeObjectOrEmpty](#safeobjectorempty)
   - [safeString](#safestring)
   - [safeNumber](#safenumber)
   - [safeBoolean](#safeboolean)
@@ -373,6 +374,39 @@ const anotherDeepObj = {
 };
 // Typy can safely return the value even from a nested key in a nested array
 const myObj = t(anotherDeepObj, 'nestedArray[1].superNestedKey.superGoodKey').safeObject; // => 'typy is great :)'
+```
+
+#### safeObjectOrEmpty
+
+Safely returns the value from a nested object path if the path exists
+or returns an empty object if the.
+
+```js
+const deepObj = {
+  nestedKey: {
+    goodKey: 'hello',
+    superNestedKey: {}
+  }
+};
+// Typy can safely return the value from a nested key in an object
+const myObj = t(deepObj, 'nestedKey.goodKey').safeObjectOrEmpty; // => 'hello'
+// Typy won't throw if the key at any level is not found
+// instead will return an empty object
+const myObj = t(deepObj, 'badKey.goodKey').safeObjectOrEmpty; // => {}
+
+const anotherDeepObj = {
+  nestedArray: [{
+    goodKey: 'hello one',
+    superNestedKey: {}
+  }, {
+    goodKey: 'hello two',
+    superNestedKey: {
+      superGoodKey: 'typy is great :)'
+    }
+  }]
+};
+// Typy can safely return the value even from a nested key in a nested array
+const myObj = t(anotherDeepObj, 'nestedArray[1].superNestedKey.superGoodKey').safeObjectOrEmpty; // => 'typy is great :)'
 ```
 
 #### safeString
