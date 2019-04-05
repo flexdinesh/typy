@@ -212,6 +212,34 @@ describe('Typy', () => {
     test('should not throw if object not found in path', () => {
       expect(t(deepObj, 'badkey').safeObject).toEqual(undefined);
       expect(t(deepObj, 'badKey.goodKey').safeObject).toEqual(undefined);
+
+      expect(t(deepObj, 'badkey').safeObjectOrEmpty).toEqual({});
+      expect(t(deepObj, 'badKey.goodKey').safeObjectOrEmpty).toEqual({});
+    });
+  });
+
+  describe('Safe Object Or Empty', () => {
+    const deepObj = {
+      nestedKey: {
+        goodKey: 'hello',
+        numberKey: 10,
+        zeroKey: 0,
+        objKey: {}
+      }
+    };
+
+    test('should return the object if found in path', () => {
+      expect(t(deepObj).safeObjectOrEmpty).toEqual(deepObj);
+      expect(t(deepObj.nestedKey).safeObjectOrEmpty).toEqual(deepObj.nestedKey);
+      expect(t(deepObj, 'nestedKey').safeObjectOrEmpty).toEqual(deepObj.nestedKey);
+      expect(t(deepObj.nestedKey.goodKey).safeObjectOrEmpty).toEqual(deepObj.nestedKey.goodKey);
+      expect(t(deepObj, 'nestedKey.goodKey').safeObjectOrEmpty).toEqual(deepObj.nestedKey.goodKey);
+    });
+
+    test('should return an empty object if object not found in path', () => {
+      expect(t(deepObj, 'badkey').safeObjectOrEmpty).toEqual({});
+      expect(t(deepObj, 'badKey.goodKey').safeObjectOrEmpty).toEqual({});
+      expect(t(deepObj, 'goodKey.goodKey').safeObjectOrEmpty).toEqual({});
     });
   });
 

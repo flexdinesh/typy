@@ -24,6 +24,7 @@ declare module "typy" {
 		readonly isEmptyArray: boolean
 		readonly isFunction: boolean
 		readonly safeObject: any
+		readonly safeObjectOrEmpty: any
 		readonly safeString: string
 
 	}
