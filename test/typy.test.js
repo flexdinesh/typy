@@ -327,6 +327,51 @@ describe('Typy', () => {
     });
   });
 
+  describe('Safe Array', () => {
+    const deepObj = {
+      nestedKey: [
+        {
+          goodKey: ['hello'],
+          numberKey: 10,
+          objKey: {
+            data: 'irrelevant',
+          },
+          funcKey: () => {}
+        }
+      ],
+      nullKey: null,
+    };
+
+    test('should return the nested array in path', () => {
+      expect(t(deepObj.nestedKey).safeArray).toEqual(deepObj.nestedKey);
+      expect(t(deepObj, 'nestedKey').safeArray).toEqual(deepObj.nestedKey);
+      expect(t(deepObj.nestedKey[0].goodKey).safeArray).toEqual(deepObj.nestedKey[0].goodKey);
+      expect(t(deepObj, 'nestedKey[0].goodKey').safeArray).toEqual(deepObj.nestedKey[0].goodKey);
+    });
+
+    test('should return an array with a single value if path not an array', () => {
+      expect(t(deepObj.nestedKey[0].numberKey).isNumber);
+      expect(t(deepObj.nestedKey[0].numberKey).safeArray).toEqual([deepObj.nestedKey[0].numberKey]);
+      expect(t(deepObj, 'nestedKey[0].numberKey').safeArray).toEqual([deepObj.nestedKey[0].numberKey]);
+
+      expect(t(deepObj.nestedKey[0].objKey).isObject);
+      expect(t(deepObj.nestedKey[0].objKey).safeArray).toEqual([deepObj.nestedKey[0].objKey]);
+      expect(t(deepObj, 'nestedKey[0].objKey').safeArray).toEqual([deepObj.nestedKey[0].objKey]);
+
+      expect(t(deepObj.nestedKey[0].funcKey).isFunction);
+      expect(t(deepObj.nestedKey[0].funcKey).safeArray).toEqual([deepObj.nestedKey[0].funcKey]);
+      expect(t(deepObj, 'nestedKey[0].funcKey').safeArray).toEqual([deepObj.nestedKey[0].funcKey]);
+    });
+
+    test('should not throw if path not found', () => {
+      expect(t(deepObj, 'nestedKey[0].undefinedKey').safeArray).toEqual([]);
+      expect(t(deepObj, 'nestedKey[1]').safeArray).toEqual([]);
+
+      expect(t(deepObj, 'nullKey').isNull).toEqual(true);
+      expect(t(deepObj, 'nullKey').safeArray).toEqual([]);
+    });
+  });
+
   describe('New Instance', () => {
     test('should return new instance for each input', () => {
       const stringType = t('hello');

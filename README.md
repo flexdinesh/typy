@@ -114,6 +114,7 @@ const myObj = t(deepObj, 'badKey.goodKey').safeObject; // => undefined
   - [safeNumber](#safenumber)
   - [safeBoolean](#safeboolean)
   - [safeFunction](#safefunction)
+  - [safeArray](#safearray)
   - [isValid (Schema Validation)](#isvalid-schema-validation)
   - [addCustomTypes (Custom Types)](#addcustomtypes-custom-types)
 
@@ -453,6 +454,32 @@ const func = t(helloFunc).safeFunction; // => helloFunc reference
 const func = t('I am a string').safeFunction; // => empty function () => {}
 const func = t(undefined).safeFunction; // => empty function () => {}
 const func = t(null).safeFunction; // => empty function () => {}
+```
+
+#### safeArray
+
+Safely returns the value from a nested object path or an empty array. If the path specified exists but is not an array, returns an array containing the value of the specified path.
+
+```js
+const deepObj = {
+  nestedKey: [
+    {
+      goodKey: ['hello'],
+      numberKey: 10,
+      superNestedKey: {}
+    },
+  ]
+};
+// Typy can safely return the value from a nested key in an object or an array
+const myObj = t(deepObj, 'nestedKey').safeArray; // => [ { goodKey: ['hello'], numberKey: 10, superNestedKey: {} } ]
+const myObj = t(deepObj, 'nestedKey[0].goodKey').safeArray; // => ['hello']
+// Typy can wrap a value or object inside an array
+const myObj = t(deepObj, 'nestedKey[0].numberKey').safeArray; // => [ 10 ]
+const myObj = t(deepObj, 'nestedKey[0].superNestedKey').safeArray; // => [ {} ]
+// Typy won't throw if the key at any level is not found
+// instead will return an empty array
+const myObj = t(deepObj, 'nestedKey[1]').safeArray; // => []
+const myObj = t(deepObj, 'badKey.goodKey').safeArray; // => []
 ```
 
 #### isValid (Schema Validation)
