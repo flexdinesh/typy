@@ -159,6 +159,12 @@ class Typy {
     if (this.isFunction) return this.input;
     return /* istanbul ignore next */ () => {};
   }
+
+  get safeArray() {
+    if (this.isArray) return this.input;
+    if (!this.isNullOrUndefined) return [this.input];
+    return [];
+  }
 }
 
 export default Typy;
