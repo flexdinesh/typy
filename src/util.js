@@ -1,5 +1,5 @@
 const getNestedObject = (obj, dotSeparatedKeys) => {
-  if (arguments.length > 1 && typeof dotSeparatedKeys !== 'string') return undefined;
+  if (dotSeparatedKeys !== undefined && typeof dotSeparatedKeys !== 'string') return undefined;
   if (typeof obj !== 'undefined' && typeof dotSeparatedKeys === 'string') {
     // split on ".", "[", "]", "'", """ and filter out empty elements
     const splitRegex = /[.\[\]'"]/g; // eslint-disable-line no-useless-escape
