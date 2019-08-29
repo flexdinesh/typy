@@ -8,6 +8,10 @@
 
 ## Released
 
+### 3.2.0 (29 Aug 2019)
+
+* TypeScript type definitions
+
 ### 3.0.1 (19 Jan 2019)
 
 * Added support for bracket syntax while accessing nested objects
