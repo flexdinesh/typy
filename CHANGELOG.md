@@ -8,9 +8,13 @@
 
 ## Released
 
+### 3.2.1 (29 Aug 2019)
+
+* FIX: Whitelist TypeScript `index.d.ts` file for npm
+
 ### 3.2.0 (29 Aug 2019)
 
-* TypeScript type definitions
+* NEW: TypeScript type definitions
 
 ### 3.0.1 (19 Jan 2019)
 
