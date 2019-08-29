@@ -17,6 +17,8 @@
   },
   "files": [
     "lib",
+    "src",
+    "index.d.ts",
     "LICENSE"
   ],
   "repository": {
