@@ -2,6 +2,11 @@
 
 ## To Be Released
 
+* New APIs added: 
+  * `t(dateObj).isDate` - is available.
+  * `t(dateObj, 'key.someDate').safeDate` - returns date if it is a valid date, else null.
+
+
 ### version (undecided)
 
 * what's next

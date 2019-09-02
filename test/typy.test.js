@@ -189,6 +189,11 @@ describe('Typy', () => {
       const func = () => {};
       expect(t(func).isFunction === true).toBeTruthy();
     });
+
+    test('should test if type is Date', () => {
+      const date = new Date();
+      expect(t(date).isDate === true).toBeTruthy();
+    });
   });
 
   describe('Safe Object', () => {
@@ -372,6 +377,18 @@ describe('Typy', () => {
     });
   });
 
+  describe('Safe Date', () => {
+    test('should return a date object if it is a date', () => {
+      const date = new Date();
+      expect(t(date).safeDate === date).toBeTruthy();
+    });
+
+    test('should return null if it is not a date', () => {
+      const date = 213;
+      expect(t(date).safeDate === null).toBeTruthy();
+    });
+  });
+
   describe('New Instance', () => {
     test('should return new instance for each input', () => {
       const stringType = t('hello');
@@ -379,6 +396,8 @@ describe('Typy', () => {
       const numberType = t(123);
       expect(numberType.isNumber === true).toBeTruthy();
       expect(stringType.isString === true).toBeTruthy();
+      const dateType = t(new Date());
+      expect(dateType.isDate === true).toBeTruthy();
     });
   });
 
@@ -410,7 +429,8 @@ describe('Typy', () => {
             }
           ]
         }
-      ]
+      ],
+      lastSeen: new Date()
     };
 
     const superheroSchema = {
@@ -425,7 +445,8 @@ describe('Typy', () => {
             }
           ]
         }
-      ]
+      ],
+      lastSeen: Schema.Date
     };
 
     test('should return true if object and schema are a valid match', () => {

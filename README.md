@@ -108,6 +108,7 @@ const myObj = t(deepObj, 'badKey.goodKey').safeObject; // => undefined
   - [isArray](#isarray)
   - [isEmptyArray](#isemptyarray)
   - [isFunction](#isfunction)
+  - [isDate](#isdate)
   - [safeObject](#safeobject)
   - [safeObjectOrEmpty](#safeobjectorempty)
   - [safeString](#safestring)
@@ -115,6 +116,7 @@ const myObj = t(deepObj, 'badKey.goodKey').safeObject; // => undefined
   - [safeBoolean](#safeboolean)
   - [safeFunction](#safefunction)
   - [safeArray](#safearray)
+  - [safeDate](#safedate)
   - [isValid (Schema Validation)](#isvalid-schema-validation)
   - [addCustomTypes (Custom Types)](#addcustomtypes-custom-types)
 
@@ -345,6 +347,16 @@ t(func).isFunction // => true
 t({}).isFunction // => false
 ```
 
+#### isDate
+
+Returns _true_ if the input is a javascript's date object.
+
+```js
+const date = new Date();
+t(date).isDate // => true
+t({}).isDate // => false
+```
+
 #### safeObject
 
 Safely returns the value from a nested object path without throwing any error.
@@ -482,6 +494,26 @@ const myObj = t(deepObj, 'nestedKey[1]').safeArray; // => []
 const myObj = t(deepObj, 'badKey.goodKey').safeArray; // => []
 ```
 
+#### safeDate
+
+Safely returns the value from a nested object path or returns null. If the path specified exits but is not of type date, returns null.
+
+```js
+const deepObj = {
+  nestedKey: [
+    {
+      goodDate: new Date(),
+      notADate: 2421
+    }
+  ]
+};
+
+const myDate = t(deepObj, 'nestedKey[0].goodKey').safeDate; // => Date Mon Sep 02 2019 21:27:11 GMT+0530 (India Standard Time)
+const myDate = t(deepObj, 'nestedKey[0].notADate').safeDate; // => null
+const myObj = t(deepObj, 'nestedKey[1]').safeDate; // => null
+const myObj = t(deepObj, 'badKey.goodKey').safeDate; // => null
+```
+
 #### isValid (Schema Validation)
 
 `isValid` is used to check and validate the schema of an object. It returns `true` if the schema of the object matches the schema passed or `false` if the schema doesn't match.
@@ -497,7 +529,8 @@ const superheroSchema = {
       title: Schema.String,
       alias: Schema.String,
     }
-  ]
+  ],
+  lastSeen: Schema.Date
 };
 const batmanObject = {
   name: 'Batman',
@@ -508,7 +541,8 @@ const batmanObject = {
       title: 'The Dark Knight',
       alias: 'Bruce',
     }
-  ]
+  ],
+  lastSeen: new Date(14894561568)
 };
 const isSchemaValid = t(batmanObject, superheroSchema).isValid; // true
 
@@ -532,6 +566,7 @@ The following **Schema types** are available in typy.
 - Null
 - Undefined
 - Function
+- Date
 
 #### addCustomTypes (Custom Types)
 
