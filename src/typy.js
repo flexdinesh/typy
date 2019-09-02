@@ -89,7 +89,8 @@ class Typy {
     if (
       typeof this.input === 'object' &&
       this.input === Object(this.input) &&
-      Object.prototype.toString.call(this.input) !== '[object Array]'
+      Object.prototype.toString.call(this.input) !== '[object Array]' &&
+      Object.prototype.toString.call(this.input) !== '[object Date]'
     ) {
       return true;
     }
