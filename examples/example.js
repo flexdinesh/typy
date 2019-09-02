@@ -42,6 +42,20 @@ const arr = [];
 console.log(`arr is an Array - ${t(arr).isArray}`); // true
 console.log(`arr is an empty Array - ${t(arr).isEmptyArray}`); // true
 
+const date = new Date();
+console.log(`type of 'date' is Date - ${t(date).isDate}`); // true
+console.log(`type of 'obj' is not date - ${t(obj).isDate}`); // false
+console.log(`type of 'arr' is not date - ${t(arr).isDate}`); // false
+
+const exampleDateObj = {
+  key: {
+    nestedGoodDate: 'new Date()'
+  }
+};
+console.log(`exampleDateObj.key.nestedGoodDate is defined - ${t(exampleDateObj, 'key.nestedGoodDate').isDefined}`); // true
+console.log(`exampleDateObj.key.nestedGoodDate is of type Date - ${t(exampleDateObj, 'key.nestedGoodDate').isDate}`); // true
+console.log(`exampleDateObj.key.nestedGoodDate is defined - ${t(exampleDateObj, 'key.nestedGoodDate').safeDate}`);
+
 // Schema Checks
 const validSchema = {
   goodKey: Schema.String,

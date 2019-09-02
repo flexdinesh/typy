@@ -9,8 +9,9 @@ class Typy {
     Undefined: undefined,
     Array: [],
     /* istanbul ignore next */
-    Function: () => {}
-  }
+    Function: () => {},
+    Date: new Date()
+  };
 
   t = (obj, options) => {
     this.input = obj;
@@ -35,8 +36,14 @@ class Typy {
   };
 
   get isValid() {
-    if (this.schemaCheck !== null && this.schemaCheck === true
-      && this.input !== null && this.input !== undefined) { return true; }
+    if (
+      this.schemaCheck !== null &&
+      this.schemaCheck === true &&
+      this.input !== null &&
+      this.input !== undefined
+    ) {
+      return true;
+    }
     return false;
   }
 
@@ -132,6 +139,13 @@ class Typy {
     return false;
   }
 
+  get isDate() {
+    return (
+      this.input instanceof Date ||
+      Object.prototype.toString.call(this.input) === '[object Date]'
+    );
+  }
+
   get safeObject() {
     return this.input;
   }
@@ -165,6 +179,11 @@ class Typy {
     if (this.isArray) return this.input;
     if (!this.isNullOrUndefined) return [this.input];
     return [];
+  }
+
+  get safeDate() {
+    if (this.isDate) return this.input;
+    return null;
   }
 }
 

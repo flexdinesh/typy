@@ -25,7 +25,8 @@ declare module "typy" {
 		readonly isNumber: boolean
 		readonly isArray: boolean
 		readonly isEmptyArray: boolean
-		readonly isFunction: boolean
+    readonly isFunction: boolean
+    readonly isDate: boolean;
 		readonly safeObject: any
 		readonly safeObjectOrEmpty: any
 		readonly safeString: string
@@ -33,6 +34,7 @@ declare module "typy" {
 		readonly safeBoolean: boolean
 		readonly safeFunction: SafeFunction
 		readonly safeArray: any[]
+		readonly safeDate: Date
 
 	}
 
