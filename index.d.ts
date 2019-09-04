@@ -4,6 +4,7 @@ declare module "typy" {
 
 	export function t (obj: any, nestedKeys?: string): Typy;
 	export function addCustomTypes(validators: {[key: string]: any}): any;
+  export default t;
 
   interface SchemaType {
    Number: number;
