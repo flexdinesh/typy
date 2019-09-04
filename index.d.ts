@@ -2,19 +2,20 @@ declare module "typy" {
 
 	type SafeFunction = (...args: any[]) => any;
 
-	export default function t (obj: any, nestedKeys?: string): Typy;
+	export function t (obj: any, nestedKeys?: string): Typy;
 	export function addCustomTypes(validators: {[key: string]: any}): any;
 
-	class Schema {
-		public Number: number;
-		public String: string;
-		public Boolean: boolean;
-		public Null: null;
-		public Undefined: undefined;
-		public Array: any[];
-		/* istanbul ignore next */
-		public Function: () => {};
-	}
+  interface SchemaType {
+   Number: number;
+   String: string;
+   Boolean: boolean;
+   Null: null;
+   Undefined: undefined;
+   Array: any[];
+   Function: () => void;
+  }
+
+  export const Schema: SchemaType;
 
 	class Typy {
 
