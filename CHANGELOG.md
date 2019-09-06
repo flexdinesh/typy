@@ -8,6 +8,10 @@
 
 ## Released
 
+### 3.2.2 (6 Sep 2019)
+
+* TypeScript `index.d.ts` type changes
+
 ### 3.2.1 (29 Aug 2019)
 
 * FIX: Whitelist TypeScript `index.d.ts` file for npm
