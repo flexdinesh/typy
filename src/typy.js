@@ -10,7 +10,8 @@ class Typy {
     Array: [],
     /* istanbul ignore next */
     Function: () => {},
-    Date: new Date()
+    Date: new Date(),
+    Symbol: Symbol('')
   };
 
   t = (obj, options) => {
@@ -143,6 +144,14 @@ class Typy {
     return (
       this.input instanceof Date ||
       Object.prototype.toString.call(this.input) === '[object Date]'
+    );
+  }
+
+  get isSymbol() {
+    return (
+      typeof this.input === 'symbol' ||
+      (typeof this.input === 'object' &&
+        Object.prototype.toString.call(this.input) === '[object Symbol]')
     );
   }
 

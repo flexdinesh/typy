@@ -64,6 +64,9 @@ t({}).isObject // => true
 t([]).isArray // => true
 t([]).isObject // => false
 
+const sym = Symbol('typyIsAwesome');
+t(sym).isSymbol // => true
+
 // obj.goodKey.nestedKey = 'helloworld'
 t(obj, 'goodKey.nestedKey').isDefined // => true
 t(obj, 'badKey.nestedKey').isDefined // => false
@@ -109,6 +112,7 @@ const myObj = t(deepObj, 'badKey.goodKey').safeObject; // => undefined
   - [isEmptyArray](#isemptyarray)
   - [isFunction](#isfunction)
   - [isDate](#isdate)
+  - [isSymbol](#issymbol)
   - [safeObject](#safeobject)
   - [safeObjectOrEmpty](#safeobjectorempty)
   - [safeString](#safestring)
@@ -356,6 +360,23 @@ const date = new Date();
 t(date).isDate // => true
 t({}).isDate // => false
 ```
+
+#### isSymbol
+
+Returns _true_ if the input is a javascript's Symbol.
+
+```js
+const mySym = Symbol(123);
+const anotherSymbol = Symbol('typyIsAwesome');
+
+t(mySym).isSymbol // => true;
+t(Object(anotherSymbol)).isSymbol  // => true;
+
+t({}).isSymbol // => false
+t([]).isSymbol // => false
+t(null).isSymbol // => false
+```
+
 
 #### safeObject
 

@@ -6,7 +6,8 @@ const exampleObj = {
   goodKey: 'I exist :)',
   nestedKey: {
     nestedGoodKey: 'Me too!'
-  }
+  },
+  symbolKey: Symbol(123)
 };
 
 console.log(`exampleObj is defined - ${t(exampleObj).isDefined}`); // true
@@ -56,12 +57,18 @@ console.log(`exampleDateObj.key.nestedGoodDate is defined - ${t(exampleDateObj, 
 console.log(`exampleDateObj.key.nestedGoodDate is of type Date - ${t(exampleDateObj, 'key.nestedGoodDate').isDate}`); // true
 console.log(`exampleDateObj.key.nestedGoodDate is defined - ${t(exampleDateObj, 'key.nestedGoodDate').safeDate}`);
 
+const mySymbol = Symbol('symbol-description');
+console.log(`is 'mySymbol' a Symbol - ${t(mySymbol).isSymbol}`);
+console.log(`is 'obj' a Symbol? - ${t(obj).isSymbol}`);
+console.log(`is 'arr' a Symbol? - ${t(arr).isSymbol}`);
+
 // Schema Checks
 const validSchema = {
   goodKey: Schema.String,
   nestedKey: {
     nestedGoodKey: Schema.String
-  }
+  },
+  symbolKey: Schema.Symbol
 };
 console.log(`exampleObj matches validSchema - ${t(exampleObj, validSchema).isValid}`); // true
 

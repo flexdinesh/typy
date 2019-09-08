@@ -194,6 +194,17 @@ describe('Typy', () => {
       const date = new Date();
       expect(t(date).isDate === true).toBeTruthy();
     });
+
+    test('should test if type is Symbol', () => {
+      const mySymbol = Symbol('someSymbol');
+      expect(t(mySymbol).isSymbol === true).toBeTruthy();
+      expect(t(Object(mySymbol)).isSymbol === true).toBeTruthy();
+
+      expect(t('Hello World').isSymbol === false).toBeTruthy();
+      expect(t({}).isSymbol === false).toBeTruthy();
+      expect(t([]).isSymbol === false).toBeTruthy();
+      expect(t(23).isSymbol === false).toBeTruthy();
+    });
   });
 
   describe('Safe Object', () => {
