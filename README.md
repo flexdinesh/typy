@@ -376,7 +376,6 @@ t([]).isSymbol // => false
 t(null).isSymbol // => false
 ```
 
-
 #### safeObject
 
 Safely returns the value from a nested object path without throwing any error.

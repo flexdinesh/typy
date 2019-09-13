@@ -6,7 +6,6 @@
   * `t(dateObj).isDate` - is available.
   * `t(Symbol('desc')).isSymbol` - is available
 
-
 ### version (undecided)
 
 * what's next
