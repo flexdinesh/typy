@@ -55,7 +55,6 @@ const exampleDateObj = {
 };
 console.log(`exampleDateObj.key.nestedGoodDate is defined - ${t(exampleDateObj, 'key.nestedGoodDate').isDefined}`); // true
 console.log(`exampleDateObj.key.nestedGoodDate is of type Date - ${t(exampleDateObj, 'key.nestedGoodDate').isDate}`); // true
-console.log(`exampleDateObj.key.nestedGoodDate is defined - ${t(exampleDateObj, 'key.nestedGoodDate').safeDate}`);
 
 const mySymbol = Symbol('symbol-description');
 console.log(`is 'mySymbol' a Symbol - ${t(mySymbol).isSymbol}`);

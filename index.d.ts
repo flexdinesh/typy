@@ -35,7 +35,6 @@ declare module "typy" {
 		readonly safeBoolean: boolean
 		readonly safeFunction: SafeFunction
 		readonly safeArray: any[]
-		readonly safeDate: Date
 
 	}
 

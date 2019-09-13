@@ -120,7 +120,6 @@ const myObj = t(deepObj, 'badKey.goodKey').safeObject; // => undefined
   - [safeBoolean](#safeboolean)
   - [safeFunction](#safefunction)
   - [safeArray](#safearray)
-  - [safeDate](#safedate)
   - [isValid (Schema Validation)](#isvalid-schema-validation)
   - [addCustomTypes (Custom Types)](#addcustomtypes-custom-types)
 
@@ -513,26 +512,6 @@ const myObj = t(deepObj, 'nestedKey[0].superNestedKey').safeArray; // => [ {} ]
 // instead will return an empty array
 const myObj = t(deepObj, 'nestedKey[1]').safeArray; // => []
 const myObj = t(deepObj, 'badKey.goodKey').safeArray; // => []
-```
-
-#### safeDate
-
-Safely returns the value from a nested object path or returns null. If the path specified exits but is not of type date, returns null.
-
-```js
-const deepObj = {
-  nestedKey: [
-    {
-      goodDate: new Date(),
-      notADate: 2421
-    }
-  ]
-};
-
-const myDate = t(deepObj, 'nestedKey[0].goodKey').safeDate; // => Date Mon Sep 02 2019 21:27:11 GMT+0530 (India Standard Time)
-const myDate = t(deepObj, 'nestedKey[0].notADate').safeDate; // => null
-const myObj = t(deepObj, 'nestedKey[1]').safeDate; // => null
-const myObj = t(deepObj, 'badKey.goodKey').safeDate; // => null
 ```
 
 #### isValid (Schema Validation)

@@ -388,18 +388,6 @@ describe('Typy', () => {
     });
   });
 
-  describe('Safe Date', () => {
-    test('should return a date object if it is a date', () => {
-      const date = new Date();
-      expect(t(date).safeDate === date).toBeTruthy();
-    });
-
-    test('should return null if it is not a date', () => {
-      const date = 213;
-      expect(t(date).safeDate === null).toBeTruthy();
-    });
-  });
-
   describe('New Instance', () => {
     test('should return new instance for each input', () => {
       const stringType = t('hello');

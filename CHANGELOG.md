@@ -4,7 +4,6 @@
 
 * New APIs added: 
   * `t(dateObj).isDate` - is available.
-  * `t(dateObj, 'key.someDate').safeDate` - returns date if it is a valid date, else null.
   * `t(Symbol('desc')).isSymbol` - is available
 
 

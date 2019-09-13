@@ -189,11 +189,6 @@ class Typy {
     if (!this.isNullOrUndefined) return [this.input];
     return [];
   }
-
-  get safeDate() {
-    if (this.isDate) return this.input;
-    return null;
-  }
 }
 
 export default Typy;
