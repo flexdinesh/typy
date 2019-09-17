@@ -2,15 +2,17 @@
 
 ## To Be Released
 
-* New APIs added: 
-  * `t(dateObj).isDate` - is available.
-  * `t(Symbol('desc')).isSymbol` - is available
-
 ### version (undecided)
 
 * what's next
 
 ## Released
+
+### 3.3.0 (17 Sep 2019)
+
+* NEW: `t(dateObj).isDate` - is available.
+* NEW: `t(Symbol('desc')).isSymbol` - is available
+* FIX: `getNestedObject` breaks in ESM modules
 
 ### 3.2.2 (6 Sep 2019)
 
