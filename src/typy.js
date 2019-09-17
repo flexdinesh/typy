@@ -9,8 +9,10 @@ class Typy {
     Undefined: undefined,
     Array: [],
     /* istanbul ignore next */
-    Function: () => {}
-  }
+    Function: () => {},
+    Date: new Date(),
+    Symbol: Symbol('')
+  };
 
   t = (obj, options) => {
     this.input = obj;
@@ -35,8 +37,14 @@ class Typy {
   };
 
   get isValid() {
-    if (this.schemaCheck !== null && this.schemaCheck === true
-      && this.input !== null && this.input !== undefined) { return true; }
+    if (
+      this.schemaCheck !== null &&
+      this.schemaCheck === true &&
+      this.input !== null &&
+      this.input !== undefined
+    ) {
+      return true;
+    }
     return false;
   }
 
@@ -89,7 +97,8 @@ class Typy {
     if (
       typeof this.input === 'object' &&
       this.input === Object(this.input) &&
-      Object.prototype.toString.call(this.input) !== '[object Array]'
+      Object.prototype.toString.call(this.input) !== '[object Array]' &&
+      Object.prototype.toString.call(this.input) !== '[object Date]'
     ) {
       return true;
     }
@@ -129,6 +138,21 @@ class Typy {
   get isFunction() {
     if (typeof this.input === 'function') return true;
     return false;
+  }
+
+  get isDate() {
+    return (
+      this.input instanceof Date ||
+      Object.prototype.toString.call(this.input) === '[object Date]'
+    );
+  }
+
+  get isSymbol() {
+    return (
+      typeof this.input === 'symbol' ||
+      (typeof this.input === 'object' &&
+        Object.prototype.toString.call(this.input) === '[object Symbol]')
+    );
   }
 
   get safeObject() {

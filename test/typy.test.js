@@ -189,6 +189,22 @@ describe('Typy', () => {
       const func = () => {};
       expect(t(func).isFunction === true).toBeTruthy();
     });
+
+    test('should test if type is Date', () => {
+      const date = new Date();
+      expect(t(date).isDate === true).toBeTruthy();
+    });
+
+    test('should test if type is Symbol', () => {
+      const mySymbol = Symbol('someSymbol');
+      expect(t(mySymbol).isSymbol === true).toBeTruthy();
+      expect(t(Object(mySymbol)).isSymbol === true).toBeTruthy();
+
+      expect(t('Hello World').isSymbol === false).toBeTruthy();
+      expect(t({}).isSymbol === false).toBeTruthy();
+      expect(t([]).isSymbol === false).toBeTruthy();
+      expect(t(23).isSymbol === false).toBeTruthy();
+    });
   });
 
   describe('Safe Object', () => {
@@ -379,6 +395,8 @@ describe('Typy', () => {
       const numberType = t(123);
       expect(numberType.isNumber === true).toBeTruthy();
       expect(stringType.isString === true).toBeTruthy();
+      const dateType = t(new Date());
+      expect(dateType.isDate === true).toBeTruthy();
     });
   });
 
@@ -410,7 +428,8 @@ describe('Typy', () => {
             }
           ]
         }
-      ]
+      ],
+      lastSeen: new Date()
     };
 
     const superheroSchema = {
@@ -425,7 +444,8 @@ describe('Typy', () => {
             }
           ]
         }
-      ]
+      ],
+      lastSeen: Schema.Date
     };
 
     test('should return true if object and schema are a valid match', () => {

@@ -64,6 +64,9 @@ t({}).isObject // => true
 t([]).isArray // => true
 t([]).isObject // => false
 
+const sym = Symbol('typyIsAwesome');
+t(sym).isSymbol // => true
+
 // obj.goodKey.nestedKey = 'helloworld'
 t(obj, 'goodKey.nestedKey').isDefined // => true
 t(obj, 'badKey.nestedKey').isDefined // => false
@@ -108,6 +111,8 @@ const myObj = t(deepObj, 'badKey.goodKey').safeObject; // => undefined
   - [isArray](#isarray)
   - [isEmptyArray](#isemptyarray)
   - [isFunction](#isfunction)
+  - [isDate](#isdate)
+  - [isSymbol](#issymbol)
   - [safeObject](#safeobject)
   - [safeObjectOrEmpty](#safeobjectorempty)
   - [safeString](#safestring)
@@ -345,6 +350,32 @@ t(func).isFunction // => true
 t({}).isFunction // => false
 ```
 
+#### isDate
+
+Returns _true_ if the input is a javascript's date object.
+
+```js
+const date = new Date();
+t(date).isDate // => true
+t({}).isDate // => false
+```
+
+#### isSymbol
+
+Returns _true_ if the input is a javascript's Symbol.
+
+```js
+const mySym = Symbol(123);
+const anotherSymbol = Symbol('typyIsAwesome');
+
+t(mySym).isSymbol // => true;
+t(Object(anotherSymbol)).isSymbol  // => true;
+
+t({}).isSymbol // => false
+t([]).isSymbol // => false
+t(null).isSymbol // => false
+```
+
 #### safeObject
 
 Safely returns the value from a nested object path without throwing any error.
@@ -497,7 +528,8 @@ const superheroSchema = {
       title: Schema.String,
       alias: Schema.String,
     }
-  ]
+  ],
+  lastSeen: Schema.Date
 };
 const batmanObject = {
   name: 'Batman',
@@ -508,7 +540,8 @@ const batmanObject = {
       title: 'The Dark Knight',
       alias: 'Bruce',
     }
-  ]
+  ],
+  lastSeen: new Date(14894561568)
 };
 const isSchemaValid = t(batmanObject, superheroSchema).isValid; // true
 
@@ -532,6 +565,7 @@ The following **Schema types** are available in typy.
 - Null
 - Undefined
 - Function
+- Date
 
 #### addCustomTypes (Custom Types)
 
