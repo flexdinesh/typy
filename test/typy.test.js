@@ -140,6 +140,10 @@ describe('Typy', () => {
       expect(t(num).isNumber === true).toBeTruthy();
       num = 'number';
       expect(t(num).isNumber === false).toBeTruthy();
+      num = Infinity;
+      expect(t(num).isNumber === true).toBeTruthy();
+      num = new Number(23523452345); // eslint-disable-line no-new-wrappers
+      expect(t(num).isNumber === true).toBeTruthy();
     });
 
     test('should test if type is Boolean', () => {

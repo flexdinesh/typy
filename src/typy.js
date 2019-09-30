@@ -131,7 +131,8 @@ class Typy {
   }
 
   get isNumber() {
-    if (Number.isFinite(this.input)) return true;
+    if (Number.isFinite(this.input)
+    || Object.prototype.toString.call(this.input) === '[object Number]') return true;
     return false;
   }
 
