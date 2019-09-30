@@ -69,7 +69,12 @@ class Typy {
   }
 
   get isBoolean() {
-    if (typeof this.input === typeof true) return true;
+    if (
+      typeof this.input === typeof true ||
+      Object.prototype.toString.call(this.input) === '[object Boolean]'
+    ) {
+      return true;
+    }
     return false;
   }
 

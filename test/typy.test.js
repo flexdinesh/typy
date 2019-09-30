@@ -76,7 +76,7 @@ describe('Typy', () => {
 
   describe('Truthy/Falsy', () => {
     test('should test if object is truthy', () => {
-      const truthyValues = ['hey', 11, {}, { yo: 'yoyo' }, true, [], [1, 2]];
+      const truthyValues = ['hey', 11, {}, { yo: 'yoyo' }, true, [], [1, 2], new Boolean(23)]; // eslint-disable-line no-new-wrappers
       truthyValues.map((value) => {
         expect(t(value).isTruthy === true).toBeTruthy();
         expect(t(value).isFalsy === false).toBeTruthy();
