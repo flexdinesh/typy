@@ -113,7 +113,9 @@ describe('Typy', () => {
 
     test('should test if type is string', () => {
       const obj = 'hello';
+      const stringObject = new String('myStringObject'); // eslint-disable-line no-new-wrappers
       expect(t(obj).isString === true).toBeTruthy();
+      expect(t(stringObject).isString === true).toBeTruthy();
     });
 
     test('should test if string is empty string', () => {

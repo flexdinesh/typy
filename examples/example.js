@@ -92,3 +92,9 @@ const validAddress = '10 Downing Street';
 const invalidAddress = 'bwahahaha';
 console.log(`"10 Downing Street" is a valid address - ${t(validAddress).isAddress}`); // true
 console.log(`"bwahahaha" is a valid address - ${t(invalidAddress).isAddress}`); // false
+
+const string = 'someString';
+const stringObject = new String('MyString'); // eslint-disable-line no-new-wrappers
+
+console.log(`String literal test: ${t(string).isString}`);
+console.log(`String object test: ${t(stringObject).isString}`);

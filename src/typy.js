@@ -111,7 +111,12 @@ class Typy {
   }
 
   get isString() {
-    if (typeof this.input === 'string') return true;
+    if (
+      typeof this.input === 'string' ||
+      Object.prototype.toString.call(this.input) === '[object String]'
+    ) {
+      return true;
+    }
     return false;
   }
 
