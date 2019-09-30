@@ -76,7 +76,7 @@ describe('Typy', () => {
 
   describe('Truthy/Falsy', () => {
     test('should test if object is truthy', () => {
-      const truthyValues = ['hey', 11, {}, { yo: 'yoyo' }, true, [], [1, 2]];
+      const truthyValues = ['hey', 11, {}, { yo: 'yoyo' }, true, [], [1, 2], new Boolean(23)]; // eslint-disable-line no-new-wrappers
       truthyValues.map((value) => {
         expect(t(value).isTruthy === true).toBeTruthy();
         expect(t(value).isFalsy === false).toBeTruthy();
@@ -113,7 +113,9 @@ describe('Typy', () => {
 
     test('should test if type is string', () => {
       const obj = 'hello';
+      const stringObject = new String('myStringObject'); // eslint-disable-line no-new-wrappers
       expect(t(obj).isString === true).toBeTruthy();
+      expect(t(stringObject).isString === true).toBeTruthy();
     });
 
     test('should test if string is empty string', () => {
@@ -138,6 +140,10 @@ describe('Typy', () => {
       expect(t(num).isNumber === true).toBeTruthy();
       num = 'number';
       expect(t(num).isNumber === false).toBeTruthy();
+      num = Infinity;
+      expect(t(num).isNumber === true).toBeTruthy();
+      num = new Number(23523452345); // eslint-disable-line no-new-wrappers
+      expect(t(num).isNumber === true).toBeTruthy();
     });
 
     test('should test if type is Boolean', () => {

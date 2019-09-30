@@ -92,3 +92,18 @@ const validAddress = '10 Downing Street';
 const invalidAddress = 'bwahahaha';
 console.log(`"10 Downing Street" is a valid address - ${t(validAddress).isAddress}`); // true
 console.log(`"bwahahaha" is a valid address - ${t(invalidAddress).isAddress}`); // false
+
+const string = 'someString';
+const stringObject = new String('MyString'); // eslint-disable-line no-new-wrappers
+console.log(`String literal test: ${t(string).isString}`);
+console.log(`String object test: ${t(stringObject).isString}`);
+
+const booleanLiteral = false;
+const booleanObject = new Boolean(123); // eslint-disable-line no-new-wrappers
+console.log(`Boolean literal test: ${t(booleanLiteral).isBoolean}`);
+console.log(`Boolean object test: ${t(booleanObject).isBoolean}`);
+
+const numberLiteral = 23;
+const numberObject = new Number(3241232352352); // eslint-disable-line no-new-wrappers
+console.log(`Number literal test: ${t(numberLiteral).isNumber}`);
+console.log(`Number object test: ${t(numberObject).isNumber}`);

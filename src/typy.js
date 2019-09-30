@@ -69,7 +69,12 @@ class Typy {
   }
 
   get isBoolean() {
-    if (typeof this.input === typeof true) return true;
+    if (
+      typeof this.input === typeof true ||
+      Object.prototype.toString.call(this.input) === '[object Boolean]'
+    ) {
+      return true;
+    }
     return false;
   }
 
@@ -111,7 +116,12 @@ class Typy {
   }
 
   get isString() {
-    if (typeof this.input === 'string') return true;
+    if (
+      typeof this.input === 'string' ||
+      Object.prototype.toString.call(this.input) === '[object String]'
+    ) {
+      return true;
+    }
     return false;
   }
 
@@ -121,7 +131,8 @@ class Typy {
   }
 
   get isNumber() {
-    if (Number.isFinite(this.input)) return true;
+    if (Number.isFinite(this.input)
+    || Object.prototype.toString.call(this.input) === '[object Number]') return true;
     return false;
   }
 
