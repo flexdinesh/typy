@@ -87,8 +87,10 @@ describe('Typy', () => {
     test('should test if object is deep truthy', () => {
       const deepTruthyObj = { goodKey: 'hello' };
       const deepNonTruthyObj = { goodKey: 'hello', badKey: null };
+      const nullObj = null;
       expect(t(deepTruthyObj).isDeepTruthy === true).toBeTruthy();
       expect(t(deepNonTruthyObj).isDeepTruthy === false).toBeTruthy();
+      expect(t(nullObj).isDeepTruthy === false).toBeTruthy();
     });
 
     test('should test if object is falsy', () => {
