@@ -69,8 +69,10 @@ class Typy {
   }
 
   get isBoolean() {
-    if (typeof this.input === typeof true) return true;
-    return false;
+    return (
+      typeof this.input === 'boolean' ||
+      this.input instanceof Boolean
+    );
   }
 
   get isTrue() {

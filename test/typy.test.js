@@ -141,9 +141,15 @@ describe('Typy', () => {
     });
 
     test('should test if type is Boolean', () => {
-      const trueObj = true;
+      let trueObj = true;
       expect(t(trueObj).isBoolean === true).toBeTruthy();
-      const falseObj = false;
+      // eslint-disable-next-line no-new-wrappers
+      trueObj = new Boolean(true);
+      expect(t(trueObj).isBoolean === true).toBeTruthy();
+      let falseObj = false;
+      expect(t(falseObj).isBoolean === true).toBeTruthy();
+      // eslint-disable-next-line no-new-wrappers
+      falseObj = new Boolean(false);
       expect(t(falseObj).isBoolean === true).toBeTruthy();
     });
 
