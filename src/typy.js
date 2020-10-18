@@ -121,8 +121,10 @@ class Typy {
   }
 
   get isNumber() {
-    if (Number.isFinite(this.input)) return true;
-    return false;
+    return (
+      typeof this.input === 'number' ||
+      this.input instanceof Number
+    );
   }
 
   get isArray() {
