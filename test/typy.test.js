@@ -112,7 +112,10 @@ describe('Typy', () => {
     });
 
     test('should test if type is string', () => {
-      const obj = 'hello';
+      let obj = 'hello';
+      expect(t(obj).isString === true).toBeTruthy();
+      // eslint-disable-next-line no-new-wrappers
+      obj = new String('hello');
       expect(t(obj).isString === true).toBeTruthy();
     });
 

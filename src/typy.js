@@ -111,8 +111,10 @@ class Typy {
   }
 
   get isString() {
-    if (typeof this.input === 'string') return true;
-    return false;
+    return (
+      typeof this.input === 'string' ||
+      this.input instanceof String
+    );
   }
 
   get isEmptyString() {
