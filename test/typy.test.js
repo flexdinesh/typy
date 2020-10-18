@@ -136,6 +136,13 @@ describe('Typy', () => {
       expect(t(num).isNumber === true).toBeTruthy();
       num = 22.345;
       expect(t(num).isNumber === true).toBeTruthy();
+      // eslint-disable-next-line no-new-wrappers
+      num = new Number(22);
+      expect(t(num).isNumber === true).toBeTruthy();
+      num = Infinity;
+      expect(t(num).isNumber === true).toBeTruthy();
+      num = -Infinity;
+      expect(t(num).isNumber === true).toBeTruthy();
       num = 'number';
       expect(t(num).isNumber === false).toBeTruthy();
     });
