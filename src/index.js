@@ -11,6 +11,9 @@ const addCustomTypes = (validators) => {
         Typy.prototype.__defineGetter__(validator, function() {
           return validators[validator](this.input);
         });
+        Object.assign(Typy.Schema, {
+          [validator]: input => validators[validator](input)
+        });
       } else {
         throw new Error(`validator ${validator} is not a function`);
       }

@@ -1,5 +1,5 @@
 import { getNestedObject, convertSchemaAndGetMatch, buildSchema, getSchemaMatch } from '../src/util';
-import { Schema } from '../src/index';
+import { Schema, addCustomTypes } from '../src/index';
 
 describe('Nested Object/Keys Check', () => {
   test('should return nested object if exists', () => {
@@ -185,6 +185,33 @@ describe('Objects and Schema check', () => {
     };
 
     expect(getSchemaMatch(objectOne, objectTwo) === true).toBeTruthy();
+  });
+
+  test('should return true when create custom shema', () => {
+    addCustomTypes({
+      isObjectId: input => (/^[\w\d]{24}$/g.test(String(input))),
+    });
+
+    const objectOk = {
+      Rank: 1,
+      Name: 'Popoye',
+      ObjectId: '5349b4ddd2781d08c09890fa'
+    };
+
+    const objectErr = {
+      Rank: 1,
+      Name: 'Popoye',
+      ObjectId: '123'
+    };
+
+    const objectSchema = {
+      Rank: Schema.Number,
+      Name: Schema.String,
+      ObjectId: Schema.isObjectId
+    };
+
+    expect(getSchemaMatch(objectOk, objectSchema) === true).toBeTruthy();
+    expect(getSchemaMatch(objectErr, objectSchema) === false).toBeTruthy();
   });
 
   test('should return true for complex objects when they match', () => {

@@ -41,7 +41,12 @@ const getSchemaMatch = (obj, objFromSchema) => {
     }
   } else if (Object.prototype.toString.call(obj) === '[object Object]') {
     for (const key in obj) { // eslint-disable-line guard-for-in, no-restricted-syntax
-      if (!getSchemaMatch(obj[key], objFromSchema[key])) {
+      if (typeof objFromSchema[key] === 'function') {
+        if (!objFromSchema[key](obj[key])) {
+          result = false;
+          break;
+        }
+      } else if (!getSchemaMatch(obj[key], objFromSchema[key])) {
         result = false;
         break;
       }
